@@ -1,4 +1,5 @@
 package sample;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -17,7 +18,7 @@ public class MenuController {
         }
     }
     public void Exit(){
-
+        Platform.exit();
     }
     public void PlayLocally() throws  Exception{
         try {

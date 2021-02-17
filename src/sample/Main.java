@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
          root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         primaryStage.setTitle("Tic Tac Toe");
-        primaryStage.setScene(new Scene(root, 650, 750));
+        primaryStage.setScene(new Scene(root, 859.0, 600));
         primaryStage.show();
     }
 
