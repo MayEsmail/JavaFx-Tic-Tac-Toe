@@ -38,6 +38,12 @@ public class GameDatabase
             databaseObj.updatePlayerRecord(6 , PlayerState.LOSE);
             databaseObj.updatePlayerRecord(7 , PlayerState.TIE);
             databaseObj.displayDashBoard();
+            databaseObj.removePlayer(29);
+            databaseObj.displayDashBoard();
+            databaseObj.removePlayer(30);
+            databaseObj.displayDashBoard();
+            databaseObj.removePlayer(30); 
+            databaseObj.displayDashBoard();
             
     }
 	public GameDatabase(Game userGame)
@@ -283,6 +289,30 @@ public class GameDatabase
                         + (oldScore + 5) + " WHERE Id = " + id);
                         break;
                 }
+            }
+            stmt.executeUpdate(queryString);
+            stmt.close();
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        } 
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //delete Player
+    public void removePlayer(int id)
+    {
+        try
+        {
+            Statement stmt = con.createStatement();
+            String queryString;
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("DELETE FROM " + GameDatabase.TIC_TAC_TOE_GAME + " WHERE Id = " + id);
+            }
+            else 
+            {
+                queryString = new String("DELETE FROM " + GameDatabase.TIC_TAC_TOE_GAME + " WHERE Id = " + id);
             }
             stmt.executeUpdate(queryString);
             stmt.close();
