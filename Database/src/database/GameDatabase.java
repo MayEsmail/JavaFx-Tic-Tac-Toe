@@ -14,6 +14,12 @@ import java.util.*;
 enum Game {
   TIC_TAC_TOE
 }
+
+enum PlayerState {
+  WIN,
+  LOSE,
+  TIE
+}
 public class GameDatabase 
 {
     static Connection con;
@@ -26,6 +32,13 @@ public class GameDatabase
     {
             GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
             databaseObj.displayDashBoard();
+            databaseObj.addNewPlayer("Ali","000");
+            databaseObj.displayDashBoard();
+            databaseObj.updatePlayerRecord(5 , PlayerState.WIN);
+            databaseObj.updatePlayerRecord(6 , PlayerState.LOSE);
+            databaseObj.updatePlayerRecord(7 , PlayerState.TIE);
+            databaseObj.displayDashBoard();
+            
     }
 	public GameDatabase(Game userGame)
         {
@@ -35,7 +48,59 @@ public class GameDatabase
             {
                 //display
                 GameDatabase.connectDB();
+                /*Statement stmt = con.createStatement();
+                String queryString = new String("select * from students");
+                ResultSet rs = stmt.executeQuery(queryString);
+                System.out.println("display all data");
+                while(rs.next())
+                {
+                        System.out.print(rs.getInt("idStudents") + "\t");
+                        System.out.print(rs.getString("Names") + "\t\t");
+                        System.out.print(rs.getInt("Age") + "\t");
+                        System.out.println(" ");
+                }*/
 
+                /*//insert
+                queryString = new String("INSERT INTO students VALUES(8 , 'John' , 50)");
+                stmt.executeUpdate(queryString);
+                queryString = new String("select * from students");
+                rs = stmt.executeQuery(queryString);
+                System.out.println("display all data after Insert query");
+                while(rs.next())
+                {
+                        System.out.print(rs.getInt("idStudents") + "\t");
+                        System.out.print(rs.getString("Names") + "\t\t");
+                        System.out.print(rs.getInt("Age") + "\t");
+                        System.out.println(" ");
+                }*/
+
+                //delete
+                /*queryString = new String("DELETE FROM students WHERE idStudents=8");
+                stmt.executeUpdate(queryString);
+                queryString = new String("select * from students");
+                rs = stmt.executeQuery(queryString);
+                System.out.println("display all data Delete");
+                while(rs.next())
+                {
+                        System.out.print(rs.getInt("idStudents") + "\t");
+                        System.out.print(rs.getString("Names") + "\t\t");
+                        System.out.print(rs.getInt("Age") + "\t");
+                        System.out.println(" ");
+                }*/
+
+                /*//update
+                queryString = new String("UPDATE students SET Names='Khaled' WHERE idStudents=8");
+                stmt.executeUpdate(queryString);
+                queryString = new String("select * from students");
+                rs = stmt.executeQuery(queryString);
+                System.out.println("display all data update");
+                while(rs.next())
+                {
+                        System.out.print(rs.getInt("idStudents") + "\t");
+                        System.out.print(rs.getString("Names") + "\t\t");
+                        System.out.print(rs.getInt("Age") + "\t");
+                        System.out.println(" ");
+                }*/
             }
             catch(SQLException exc)
             {
@@ -48,6 +113,13 @@ public class GameDatabase
         DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + DATABASE_NAME , USER_NAME , PASSWORD);
     }
+    
+    private static void disconnectDB() throws SQLException
+    {
+        //Disconnect with database. 
+        con.close();
+    } 
+    //DashBoard
     public void displayDashBoard()
     {
         
@@ -72,10 +144,85 @@ public class GameDatabase
                     System.out.print(rs.getInt("Lose") + "\t");
                     System.out.println(" ");
             }
+            stmt.close();
         }
         catch(SQLException exc)
         {
                 exc.printStackTrace();
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //add new user 2 Methods
+    public int addNewPlayer(String name , String password)
+    {
+        int ret = -1;
+        try
+        {
+            Statement stmt = con.createStatement();
+            String queryString;
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("INSERT INTO " + GameDatabase.TIC_TAC_TOE_GAME + "(Name,Password,SavedFile) VALUES('" + name + "'," + password + ",null)");
+            }
+            else 
+            {
+                queryString = new String("INSERT INTO " + "anotherGame" + "VALUES('" + name + "','" + password + "',null");
+            }
+            stmt.executeUpdate(queryString);
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("SELECT Id FROM " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Id DESC LIMIT 1");
+            }
+            else 
+            {
+                queryString = new String("SELECT Id FROM " + "anotherGame" + " ORDER BY Id DESC LIMIT 1");
+            }
+            ResultSet rs = stmt.executeQuery(queryString);
+            rs.next();
+            ret = rs.getInt("Id");
+            stmt.close();
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        } 
+        return ret;
+    }
+    
+    public int addNewPlayer(String name)
+    {
+        int ret = -1;
+        try
+        {
+            Statement stmt = con.createStatement();
+            String queryString;
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("INSERT INTO " + GameDatabase.TIC_TAC_TOE_GAME + "(Name,Password,SavedFile) VALUES('" + name + "',null,null)");
+            }
+            else 
+            {
+                queryString = new String("INSERT INTO " + "anotherGame" + "VALUES('" + name + "',null,0,0,0,null");
+            }
+            stmt.executeUpdate(queryString);
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("SELECT Id FROM " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Id DESC LIMIT 1");
+            }
+            else 
+            {
+                queryString = new String("SELECT Id FROM " + "anotherGame" + " ORDER BY Id DESC LIMIT 1");
+            }
+            ResultSet rs = stmt.executeQuery(queryString);
+            rs.next();
+            ret = rs.getInt("Id");
+            stmt.close();
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        } 
+        return ret;
+    }
+
 }
