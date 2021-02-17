@@ -54,61 +54,8 @@ public class GameDatabase
             SelectedGame = userGame;
             try
             {
-                //display
+                //stablish the connection
                 GameDatabase.connectDB();
-                /*Statement stmt = con.createStatement();
-                String queryString = new String("select * from students");
-                ResultSet rs = stmt.executeQuery(queryString);
-                System.out.println("display all data");
-                while(rs.next())
-                {
-                        System.out.print(rs.getInt("idStudents") + "\t");
-                        System.out.print(rs.getString("Names") + "\t\t");
-                        System.out.print(rs.getInt("Age") + "\t");
-                        System.out.println(" ");
-                }*/
-
-                /*//insert
-                queryString = new String("INSERT INTO students VALUES(8 , 'John' , 50)");
-                stmt.executeUpdate(queryString);
-                queryString = new String("select * from students");
-                rs = stmt.executeQuery(queryString);
-                System.out.println("display all data after Insert query");
-                while(rs.next())
-                {
-                        System.out.print(rs.getInt("idStudents") + "\t");
-                        System.out.print(rs.getString("Names") + "\t\t");
-                        System.out.print(rs.getInt("Age") + "\t");
-                        System.out.println(" ");
-                }*/
-
-                //delete
-                /*queryString = new String("DELETE FROM students WHERE idStudents=8");
-                stmt.executeUpdate(queryString);
-                queryString = new String("select * from students");
-                rs = stmt.executeQuery(queryString);
-                System.out.println("display all data Delete");
-                while(rs.next())
-                {
-                        System.out.print(rs.getInt("idStudents") + "\t");
-                        System.out.print(rs.getString("Names") + "\t\t");
-                        System.out.print(rs.getInt("Age") + "\t");
-                        System.out.println(" ");
-                }*/
-
-                /*//update
-                queryString = new String("UPDATE students SET Names='Khaled' WHERE idStudents=8");
-                stmt.executeUpdate(queryString);
-                queryString = new String("select * from students");
-                rs = stmt.executeQuery(queryString);
-                System.out.println("display all data update");
-                while(rs.next())
-                {
-                        System.out.print(rs.getInt("idStudents") + "\t");
-                        System.out.print(rs.getString("Names") + "\t\t");
-                        System.out.print(rs.getInt("Age") + "\t");
-                        System.out.println(" ");
-                }*/
             }
             catch(SQLException exc)
             {
