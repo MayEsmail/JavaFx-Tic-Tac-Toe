@@ -44,6 +44,8 @@ public class GameDatabase
             databaseObj.displayDashBoard();
             databaseObj.removePlayer(30); 
             databaseObj.displayDashBoard();
+            databaseObj.editPlayerName(1,"Dakhly");
+            databaseObj.displayDashBoard();
             
     }
 	public GameDatabase(Game userGame)
@@ -312,7 +314,31 @@ public class GameDatabase
             }
             else 
             {
-                queryString = new String("DELETE FROM " + GameDatabase.TIC_TAC_TOE_GAME + " WHERE Id = " + id);
+                queryString = new String("DELETE FROM " + "anotherGame"+ " WHERE Id = " + id);
+            }
+            stmt.executeUpdate(queryString);
+            stmt.close();
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        } 
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //Edit Player Name
+    public void editPlayerName(int id , String name)
+    {
+        try
+        {
+            Statement stmt = con.createStatement();
+            String queryString;
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Name = '" + name + "' WHERE Id = " + id);
+            }
+            else 
+            {
+                queryString = new String("UPDATE " + "anotherGame" + " SET Name = '" + name + "' WHERE Id = " + id);
             }
             stmt.executeUpdate(queryString);
             stmt.close();
