@@ -24,9 +24,10 @@ public class DatabaseGUI extends Application {
         GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
         SingUpScreen root = new SingUpScreen(primaryStage , databaseObj);
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 520, 300);
         
         primaryStage.setTitle("X Sign Up O");
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

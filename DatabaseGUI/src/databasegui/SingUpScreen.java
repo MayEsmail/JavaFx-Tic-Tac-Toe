@@ -61,7 +61,7 @@ public class SingUpScreen extends AnchorPane {
             @Override
             public void handle(ActionEvent ex)
             {
-                   nameField.getText() , passwordField.get
+                   System.out.println(databaseObj.addNewPlayer(nameField.getText() , passwordField.getText()));
             }
         });
 
