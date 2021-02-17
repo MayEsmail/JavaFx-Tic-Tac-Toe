@@ -224,5 +224,72 @@ public class GameDatabase
         } 
         return ret;
     }
-
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //upload table with result of match
+    public void updatePlayerRecord(int id , PlayerState pState)
+    {
+        try
+        {
+            int oldScore;
+            int oldWin;
+            int oldLose;
+            Statement stmt = con.createStatement();
+            String queryString;
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("SELECT * FROM " + GameDatabase.TIC_TAC_TOE_GAME + " WHERE Id = " + id);
+            }
+            else 
+            {
+                queryString = new String("SELECT * FROM " + "anotherGame" + " WHERE Id = " + id);
+            }
+            ResultSet rs = stmt.executeQuery(queryString);
+            rs.next();
+            oldScore = rs.getInt("Score");
+            oldLose = rs.getInt("Lose");
+            oldWin = rs.getInt("Win");
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                switch(pState)
+                {
+                    case WIN:
+                        queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Score = " 
+                        + (oldScore + 10) + ", Win = " + (oldWin + 1) + " WHERE Id = " + id);
+                        break;
+                    case LOSE:
+                        queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Lose = " 
+                        + (oldLose + 1) + " WHERE Id = " + id);
+                        break;
+                    case TIE:
+                        queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Score = " 
+                        + (oldScore + 5) + " WHERE Id = " + id);
+                        break;
+                }
+            }
+            else 
+            {
+                switch(pState)
+                {
+                    case WIN:
+                        queryString = new String("UPDATE " + "anotherGame" + "SET Score = " 
+                        + (oldScore + 10) + ", Win = " + (oldWin + 1) + " WHERE Id = " + id);
+                        break;
+                    case LOSE:
+                        queryString = new String("UPDATE " + "anotherGame" + "SET Lose = " 
+                        + (oldLose + 1) + " WHERE Id = " + id);
+                        break;
+                    case TIE:
+                        queryString = new String("UPDATE " + "anotherGame" + "SET Score = " 
+                        + (oldScore + 5) + " WHERE Id = " + id);
+                        break;
+                }
+            }
+            stmt.executeUpdate(queryString);
+            stmt.close();
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        } 
+    }
 }
