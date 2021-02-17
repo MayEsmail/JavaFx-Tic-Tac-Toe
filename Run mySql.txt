@@ -1,0 +1,21 @@
+mysql.exe -u root -p
+CREATE DATABASE JavaGame;
+
+create table tutorials_tbl(
+   tutorial_id INT NOT NULL AUTO_INCREMENT,
+   tutorial_title VARCHAR(100) NOT NULL,
+   tutorial_author VARCHAR(40) NOT NULL,
+   submission_date DATE,
+   PRIMARY KEY ( tutorial_id )
+);
+
+CREATE Table TicTacTocGame (
+Id INT NOT NULL AUTO_INCREMENT,
+Name VARCHAR(50) NOT NULL,
+Password VARCHAR(50),
+Score INT DEFAULT 0,
+Win INT DEFAULT 0,
+Lose INT DEFAULT 0,
+SavedFile VARCHAR(50),
+PRIMARY KEY (Id)
+)
