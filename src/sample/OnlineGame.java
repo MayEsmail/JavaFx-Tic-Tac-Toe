@@ -25,6 +25,7 @@ public class OnlineGame extends Controller implements Initializable{
     static BufferedReader din;
     static PrintStream dout;
     String playerTurn = "x";
+    volatile boolean closeConnection = false;
 
     @FXML
     private Button btn1;
@@ -51,22 +52,35 @@ public class OnlineGame extends Controller implements Initializable{
 //        counter++
         end();
         Button btn = (Button) event.getSource();
-        if(!gameEnd) sendMsg(playerTurn + btn.getId().charAt(3));
+        if(!gameEnd) {
+            sendMsg(playerTurn + btn.getId().charAt(3));
+            btn.setText(playerTurn);
+            setButtonsState(true);
+        }
+
+    }
+
+    public void setButtonsState(boolean state){
+        btn1.setDisable(state);
+        btn2.setDisable(state);
+        btn3.setDisable(state);
+        btn4.setDisable(state);
+        btn5.setDisable(state);
+        btn6.setDisable(state);
+        btn7.setDisable(state);
+        btn8.setDisable(state);
+        btn9.setDisable(state);
     }
 
     public void back() {
         try {
+            dout.println("stop");
+            closeConnection = true;
             AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Menu.fxml"));
             onlineGame.getChildren().setAll(fxmlLoader);
         } catch(Exception e) {
             e.printStackTrace();
         }
-
-        try{
-            din.close();
-            dout.close();
-            s.close();
-        }catch(Exception ex){}
 
     }
 
@@ -112,11 +126,14 @@ public class OnlineGame extends Controller implements Initializable{
             while(true){
 
                 try{
-                    if(message.equals("stop"))
+                    if(closeConnection)
                         break;
                     System.out.println("before");
                     recievedMessage = din.readLine();
-                    playMove(recievedMessage);
+                    if(recievedMessage.length() == 1)
+                        playerTurn = recievedMessage;
+                    else
+                        playMove(recievedMessage);
                 }catch(Exception ex){}
 
             }
@@ -137,6 +154,7 @@ public class OnlineGame extends Controller implements Initializable{
             playerTurn = "o";
         if(player.equals("o"))
             playerTurn = "x";
+        setButtonsState(false);
         Platform.runLater(new Runnable(){
             public void run(){
                 switch(position){
