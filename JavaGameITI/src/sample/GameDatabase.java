@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database;
+package sample;
 import java.sql.*;
 import java.util.*; 
 /**
@@ -46,8 +46,6 @@ public class GameDatabase
             databaseObj.displayDashBoard();
             databaseObj.editPlayerName(1,"Dakhly");
             databaseObj.displayDashBoard();
-            System.out.println(databaseObj.loginPlayer(1));
-            System.out.println(databaseObj.loginPlayer(50));
             
     }
 	public GameDatabase(Game userGame)
@@ -297,8 +295,7 @@ public class GameDatabase
                 exc.printStackTrace();
         } 
     }
-    //////////////////////////////////////////
-    public boolean loginPlayer(int id)
+    public String loginPlayer(int id)
     {
         try
         {
@@ -315,8 +312,7 @@ public class GameDatabase
             ResultSet rs = stmt.executeQuery(queryString);
             if(rs.next())
             {
-                stmt.close();
-                return true;
+                return rs.getString("Name").trim();
             }
             stmt.close();
         }
@@ -324,6 +320,6 @@ public class GameDatabase
         {
                 exc.printStackTrace();
         } 
-        return false;
+        return "";
     }
 }

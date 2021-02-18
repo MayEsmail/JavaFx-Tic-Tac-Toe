@@ -7,7 +7,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" accessibleRole="BUTTON" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1F2741; -fx-border-color: FFBB00; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="databasegui.GetIdScreenBase">
+<AnchorPane fx:id="getIdScreen" accessibleRole="BUTTON" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1F2741; -fx-border-color: FFBB00; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GetIdScreenBase">
    <children>
       <Label layoutX="77.0" layoutY="72.0" text="Welcome to the coolest XO game">
          <font>
