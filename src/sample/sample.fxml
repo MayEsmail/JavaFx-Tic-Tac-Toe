@@ -92,7 +92,7 @@
             </Rectangle>
          </children>
       </VBox>
-      <Label layoutX="379.0" layoutY="63.0" text="Winner" textFill="WHITE">
+      <Label layoutX="378.0" layoutY="63.0" text="Winner" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="30.0" />
          </font>
@@ -106,6 +106,16 @@
       <Label fx:id="turn" layoutX="28.0" layoutY="560.0" prefHeight="18.0" prefWidth="95.0" text="Turn:X turn" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="fPScore" layoutX="239.0" layoutY="73.0" text="Player X score" textFill="WHITE">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="sPScore" layoutX="553.0" layoutY="76.0" text="Player Y Score" textFill="#f2f2f2">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Label>
 <!--      <FontAwesomeIconView layoutX="330.0"  layoutY="93.0"  fill="YELLOW" glyphName="TROPHY" size="30" />-->

@@ -7,10 +7,13 @@ import javafx.scene.layout.AnchorPane;
 
 
 public class MenuController {
+    public static boolean computerPlay;
     @FXML
     private AnchorPane rootPane;
+
     public void PlayOnline() throws  Exception{
         try {
+            computerPlay=false;
             AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
             rootPane.getChildren().setAll(fxmlLoader);
         } catch(Exception e) {
@@ -22,6 +25,7 @@ public class MenuController {
     }
     public void PlayLocally() throws  Exception{
         try {
+            computerPlay = false;
             AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
             rootPane.getChildren().setAll(fxmlLoader);
         } catch(Exception e) {
@@ -31,6 +35,7 @@ public class MenuController {
     }
     public void PlayAgainstComp() throws  Exception{
         try {
+            computerPlay = true;
             AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
             rootPane.getChildren().setAll(fxmlLoader);
         } catch(Exception e) {
