@@ -5,9 +5,12 @@
  */
 package databasegui;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -18,14 +21,15 @@ import javafx.stage.Stage;
  * @author hp
  */
 public class DatabaseGUI extends Application {
-    
+    static int newPlayerId = 0;
+    static Stage primaryStage;
+    static GameDatabase databaseObj;
     @Override
-    public void start(Stage primaryStage) {
-        GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
-        SingUpScreen root = new SingUpScreen(primaryStage , databaseObj);
-        
+    public void start(Stage primary) throws IOException {
+        primaryStage = primary;
+        databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
+        Parent root = FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
         Scene scene = new Scene(root, 520, 300);
-        
         primaryStage.setTitle("X Sign Up O");
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
