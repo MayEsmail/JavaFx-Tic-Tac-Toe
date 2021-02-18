@@ -14,7 +14,7 @@ public class MenuController {
     public void PlayOnline() throws  Exception{
         try {
             computerPlay=false;
-            AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
+            AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
             rootPane.getChildren().setAll(fxmlLoader);
         } catch(Exception e) {
             e.printStackTrace();
