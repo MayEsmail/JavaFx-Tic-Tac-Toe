@@ -31,21 +31,21 @@ public class GameDatabase
     public static void main(String[] args)
     {
             GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
-            databaseObj.displayDashBoard();
+            databaseObj.displayLeaderBoard();
             databaseObj.addNewPlayer("Ali","000");
-            databaseObj.displayDashBoard();
+            databaseObj.displayLeaderBoard();
             databaseObj.updatePlayerRecord(5 , PlayerState.WIN);
             databaseObj.updatePlayerRecord(6 , PlayerState.LOSE);
             databaseObj.updatePlayerRecord(7 , PlayerState.TIE);
-            databaseObj.displayDashBoard();
+            databaseObj.displayLeaderBoard();
             databaseObj.removePlayer(29);
-            databaseObj.displayDashBoard();
+            databaseObj.displayLeaderBoard();
             databaseObj.removePlayer(30);
-            databaseObj.displayDashBoard();
+            databaseObj.displayLeaderBoard();
             databaseObj.removePlayer(30); 
-            databaseObj.displayDashBoard();
+            databaseObj.displayLeaderBoard();
             databaseObj.editPlayerName(1,"Dakhly");
-            databaseObj.displayDashBoard();
+            databaseObj.displayLeaderBoard();
             
     }
 	public GameDatabase(Game userGame)
@@ -74,37 +74,96 @@ public class GameDatabase
         //Disconnect with database. 
         con.close();
     } 
-    //DashBoard
-    public void displayDashBoard()
+    //user information
+    public String[] displayUserInfo(int id)
     {
-        
         try
         {
             Statement stmt = con.createStatement();
             String queryString;
             if(SelectedGame == Game.TIC_TAC_TOE)
             {    
-                queryString = new String("select * from " + GameDatabase.TIC_TAC_TOE_GAME);
+                queryString = new String("select * from " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Score DESC");
             }
             else 
             {
-                queryString = new String("select * from" + "anotherGame");
+                queryString = new String("select * from" + "anotherGame" + " ORDER BY Score DESC");
             }
             ResultSet rs = stmt.executeQuery(queryString);
+            int counter = 1;
+            String[] data = new String[7];
             while(rs.next())
             {
-                    System.out.print(rs.getString("Name") + "\t");
-                    System.out.print(rs.getInt("Score") + "\t\t");
-                    System.out.print(rs.getInt("Win") + "\t");
-                    System.out.print(rs.getInt("Lose") + "\t");
-                    System.out.println(" ");
+                if(rs.getInt("Id") == id)
+                {
+                    data[0] = Integer.toString(rs.getInt("Id"));
+                    data[1] = rs.getString("Name");
+                    data[2] = Integer.toString(counter);
+                    data[3] = Integer.toString(rs.getInt("Score"));
+                    data[4] = Integer.toString(rs.getInt("Win"));
+                    data[5] = Integer.toString(rs.getInt("Lose"));
+                    if(rs.getInt("Lose") != 0)
+                    {
+                        data[6] = Integer.toString(rs.getInt("Win") * 100 / (rs.getInt("Lose") + rs.getInt("Win")));
+                    }
+                    else
+                    {
+                        data[6] = "100";
+                    }
+                }
+                counter++;
             }
             stmt.close();
+            return data;
         }
         catch(SQLException exc)
         {
                 exc.printStackTrace();
         }
+        return null;
+    }
+    //DashBoard
+    public String[][] displayLeaderBoard()
+    {
+        try
+        {
+            Statement stmt = con.createStatement();
+            String queryString;
+            if(SelectedGame == Game.TIC_TAC_TOE)
+            {    
+                queryString = new String("select * from " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Score DESC");
+            }
+            else 
+            {
+                queryString = new String("select * from" + "anotherGame" + " ORDER BY Score DESC");
+            }
+            ResultSet rs = stmt.executeQuery(queryString);
+            int counter = 1;
+            while(rs.next())
+            {
+                counter++;
+            }
+            String[][] data = new String[counter][5];
+            counter = 1;
+            rs.beforeFirst();
+            while(rs.next())
+            {
+                data[counter] = new String[5];
+                data[counter][0] = Integer.toString(counter);
+                data[counter][1] = rs.getString("Name");
+                data[counter][2] = Integer.toString(rs.getInt("Score"));
+                data[counter][3] = Integer.toString(rs.getInt("Win"));
+                data[counter][4] = Integer.toString(rs.getInt("Lose"));
+                counter++;
+            }
+            stmt.close();
+            return data;
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        }
+        return null;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //add new user 2 Methods

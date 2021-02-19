@@ -44,6 +44,8 @@ public class SingUpScreen implements  Initializable{
 //        Parent root1 = FXMLLoader.load(getClass().getResource("GetIdScreen.fxml"));
 //        Scene loginScene = new Scene(root1, 600, 400);
         
+        
+        //AnchorPane fxmlLoader = FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
         AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("GetIdScreen.fxml"));
         signUpScreen.getChildren().setAll(fxmlLoader);
 //        Main.primaryStage.setScene(loginScene);
