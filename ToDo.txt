@@ -1,6 +1,9 @@
 save the previous page to:
 	use it in back
 	knowing where to go after login and signup
+record the case of player (isLogin?)
+recorded games and its display
+Victory video
 delays in cases
 	playing with computer
 	moving from game screen to win,lose,draw screens 
