@@ -50,12 +50,12 @@ public class OnlineGame extends Controller implements Initializable{
 
     public void onPlay(ActionEvent event){
 //        counter++
-        end();
         Button btn = (Button) event.getSource();
         if(!gameEnd) {
             sendMsg(playerTurn + btn.getId().charAt(3));
             btn.setText(playerTurn);
             setButtonsState(true);
+            end();
         }
 
     }
