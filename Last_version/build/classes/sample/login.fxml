@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parent_login"  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="893.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.LoginController">
+   <children>
+      <GridPane alignment="CENTER" prefHeight="406.0" prefWidth="818.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="38.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="8.0" prefWidth="152.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="437.0" minWidth="10.0" prefWidth="355.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.0" minWidth="1.0" prefWidth="139.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="47.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="91.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="166.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="153.0" minHeight="10.0" prefHeight="153.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label id="fancytext" alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="419.0" stylesheets="@Win.css" text="Login" textFill="#14e3ff" GridPane.columnIndex="2">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="48.0" />
+               </font>
+               <effect>
+                  <DropShadow height="49.05" radius="16.9525" spread="0.82" width="20.76" />
+               </effect>
+            </Label>
+            <TextField fx:id="loginIdField" alignment="CENTER" prefHeight="45.0" prefWidth="353.0" promptText="Enter Your Connection Key" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Comic Sans MS" size="24.0" />
+               </font>
+               <effect>
+                  <InnerShadow color="#ff0ad9" height="44.72" radius="22.6" width="47.68" />
+               </effect>
+            </TextField>
+            <Button cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="157.0" style="-fx-background-color: #ffdb00;" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="22.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#login" prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #c221bf;" text="Login" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="22.0" />
+               </font>
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="149.0" prefWidth="370.0" style="-fx-alignment: center;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <Label alignment="BOTTOM_LEFT" prefHeight="24.0" prefWidth="170.0" text="Have no account yet?" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="15.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="100.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" onAction="#register" prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: transparent;" text="Click Here" textFill="#20d3eb" underline="true">
+                     <HBox.margin>
+                        <Insets top="100.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="17.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="255.0" radius="124.775" spread="0.09" width="246.1">
+               <input>
+                  <DropShadow height="146.83249999999998" radius="74.013125" width="151.22" />
+               </input>
+            </DropShadow>
+         </effect>
+      </GridPane>
+   </children>
+</AnchorPane>

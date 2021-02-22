@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="getIdScreen" accessibleRole="BUTTON" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1F2741; -fx-border-color: FFBB00; -fx-border-width: 5;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GetIdScreenBase">
+   <children>
+      <Label layoutX="77.0" layoutY="72.0" text="Welcome to the coolest XO game">
+         <font>
+            <Font name="Forte" size="32.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#5f50c7" />
+                  <Stop color="#c750ad" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="227.0" layoutY="134.0" text="Your ID is " textFill="#9250c7">
+         <font>
+            <Font name="Forte" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="idField" layoutX="265.0" layoutY="200.0" text="Label" textFill="#ffbb00">
+         <font>
+            <Font name="Forte" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="259.0" layoutY="270.0" onAction="#seeId" mnemonicParsing="false" style="-fx-background-color: #6B11D2;" text="OK" textFill="WHITE">
+         <font>
+            <Font name="Forte" size="30.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
