@@ -26,7 +26,7 @@ public class GameDatabase
     private final static String  DATABASE_NAME = "JavaGame";
     private final static String USER_NAME = "root";
     private final static String  PASSWORD = "12345";
-    private final static String TIC_TAC_TOE_GAME = "TicTacToeGame";
+    private final static String TIC_TAC_TOE_GAME = "TicTacTocGame";
     private static Game SelectedGame;
     public static void main(String[] args)
     {

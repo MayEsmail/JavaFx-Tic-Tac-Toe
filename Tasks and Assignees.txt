@@ -1,0 +1,20 @@
+1-Main Menu design Screen
+2-Game Design Screen
+
+Assignee: Mahmood Fathy
+
+3-Database Implementation and connection
+
+Assignee: Ahmed El-Dakhly
+
+4-Win , Draw ,Lose screens 
+
+Assignee : May Ismail
+
+5-Game Logic Implementation
+
+Assignee: Samar Khaled
+
+6-Client Server Implementation and connection
+
+Assignee : Islam Hany
