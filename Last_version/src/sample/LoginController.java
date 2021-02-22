@@ -42,10 +42,11 @@ public class LoginController{
 
     @FXML
     private void login(ActionEvent event){
-        //check database
+        System.out.println(",,,,,,,,,,,");
     }
     @FXML
     private void register(ActionEvent event){
+        System.out.println("88888888888888");
         //try {
            //Parent SignUp_Parent=FXMLLoader.load(getClass().getResource("signup.fxml"));
            //Scene SignUp_Scene=new Scene(SignUp_Parent);

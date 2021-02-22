@@ -141,37 +141,38 @@ public class Controller implements Initializable {
         }
     }
     public void change_screen(char myWinner){
-        if(MenuController.computerPlay){
+        if(MenuController.computerPlay||MenuController.online){
             //int sec=LocalDateTime.now().getSecond();
             //while(LocalDateTime.now().getSecond()<sec+2);
-            switch (myWinner) {
-                case 'X':
-                    try {
-                        Parent Menu_Parent=FXMLLoader.load(getClass().getResource("Win.fxml"));
-                        Scene Menu_Scene=new Scene(Menu_Parent);
-                        App_Stage.setScene(Menu_Scene);
-                        App_Stage.show();
-                    } catch(IOException e) {
-                        e.printStackTrace();
-                    }   break;
-                case 'O':
-                    try {
-                        Parent Menu_Parent=FXMLLoader.load(getClass().getResource("lose.fxml"));
-                        Scene Menu_Scene=new Scene(Menu_Parent);
-                        App_Stage.setScene(Menu_Scene);
-                        App_Stage.show();
-                    } catch(IOException e) {
-                        e.printStackTrace();
-                    }   break;
-                default:
-                    try {
-                        Parent Menu_Parent=FXMLLoader.load(getClass().getResource("Draw.fxml"));
-                        Scene Menu_Scene=new Scene(Menu_Parent);
-                        App_Stage.setScene(Menu_Scene);
-                        App_Stage.show();
-                    } catch(IOException e){
-                        e.printStackTrace();
-                    }   break;
+            if(player.equals(""+myWinner)){
+                try {
+                    Parent Win_Parent=FXMLLoader.load(getClass().getResource("Win.fxml"));
+                    Scene Win_Scene=new Scene(Win_Parent);
+                    App_Stage.setScene(Win_Scene);
+                    App_Stage.show();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(myWinner=='-'){
+                try {
+                    Parent Draw_Parent=FXMLLoader.load(getClass().getResource("Draw.fxml"));
+                    Scene Draw_Scene=new Scene(Draw_Parent);
+                    App_Stage.setScene(Draw_Scene);
+                    App_Stage.show();
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+            else{
+                try {
+                    Parent Lose_Parent=FXMLLoader.load(getClass().getResource("lose.fxml"));
+                    Scene Lose_Scene=new Scene(Lose_Parent);
+                    App_Stage.setScene(Lose_Scene);
+                    App_Stage.show();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -225,7 +226,6 @@ public class Controller implements Initializable {
     }
     private void increaseScore(String player) {
         if (player.equals("X")) {
-
             fPScore.setText("Player X Score :" + ++xSCore);
             sPScore.setText("Player O Score :" + oScore);
             counter = 0;

@@ -47,7 +47,7 @@
                   <InnerShadow color="#ff0ad9" height="44.72" radius="22.6" width="47.68" />
                </effect>
             </TextField>
-            <Button cancelButton="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="157.0" style="-fx-background-color: #ffdb00;" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="157.0" style="-fx-background-color: #ffdb00;" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Bookman Old Style Bold Italic" size="22.0" />
                </font>

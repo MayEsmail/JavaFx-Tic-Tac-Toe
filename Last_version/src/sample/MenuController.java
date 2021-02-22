@@ -13,13 +13,13 @@ import javafx.stage.Stage;
 
 
 public class MenuController {
-    public static boolean computerPlay;
+    public static boolean computerPlay,online=false;
     @FXML
     private AnchorPane rootPane;
     //we need to stord previos page for back and login and to know if the user is logged in by setting this variable to true in first login
-    public boolean is_loggedin=false;
+    //public boolean is_loggedin=false;
     public void PlayOnline(ActionEvent event) throws  Exception{
-        if(!is_loggedin){
+        /*if(!is_loggedin){
            try {
                 Parent Menu2_Parent=FXMLLoader.load(getClass().getResource("Login_or_Register.fxml"));
                 Scene Menu2_Scene=new Scene(Menu2_Parent);
@@ -29,8 +29,9 @@ public class MenuController {
             } catch(IOException e) {
                e.printStackTrace();
             }
-        }
+        }*/
         try {
+            online=true;
             computerPlay=false;
             AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
             rootPane.getChildren().setAll(fxmlLoader);

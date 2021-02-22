@@ -17,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 
 public class OnlineGame extends Controller implements Initializable{
     volatile String message = "";
@@ -50,14 +52,17 @@ public class OnlineGame extends Controller implements Initializable{
 
     public void onPlay(ActionEvent event){
 //        counter++
+        App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
         end();
         Button btn = (Button) event.getSource();
-        if(!gameEnd) {
-            sendMsg(playerTurn + btn.getId().charAt(3));
-            btn.setText(playerTurn);
-            setButtonsState(true);
+        if(btn.getText().equals("")){
+            if(!gameEnd) {
+                sendMsg(playerTurn + btn.getId().charAt(3));
+                btn.setText(playerTurn);
+                end();
+                setButtonsState(true);
+            }
         }
-
     }
 
     public void setButtonsState(boolean state){
@@ -124,18 +129,16 @@ public class OnlineGame extends Controller implements Initializable{
 
         public void run(){
             while(true){
-
                 try{
                     if(closeConnection)
                         break;
-                    System.out.println("before");
+                    //System.out.println("before");
                     recievedMessage = din.readLine();
                     if(recievedMessage.length() == 1)
                         playerTurn = recievedMessage;
                     else
                         playMove(recievedMessage);
                 }catch(Exception ex){}
-
             }
 
             try{
@@ -189,6 +192,8 @@ public class OnlineGame extends Controller implements Initializable{
                         break;
                 }
                 end();
+                if(gameEnd)
+                    System.out.println("here");
             }
         });
     }
