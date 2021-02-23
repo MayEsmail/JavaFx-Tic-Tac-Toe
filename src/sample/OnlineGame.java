@@ -96,6 +96,7 @@ public class OnlineGame extends Controller implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         backBtn.setVisible(false);
         initializeList();
+        setButtonsState(true);
 
         try{
             s = new Socket("localhost", 5555);
@@ -137,6 +138,8 @@ public class OnlineGame extends Controller implements Initializable{
                     recievedMessage = din.readLine();
                     if(recievedMessage.length() == 1)
                         playerTurn = recievedMessage;
+                    else if(recievedMessage.equals("go"))
+                        setButtonsState(false);
                     else
                         playMove(recievedMessage);
                 }catch(Exception ex){}

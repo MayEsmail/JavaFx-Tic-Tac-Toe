@@ -56,6 +56,8 @@ class GameHandler extends Thread{
     }
 
     public void run(){
+        if(Server.counter > 2)
+            sendMessageToAll("go");
         while(true){
             String str = "";
             try{
