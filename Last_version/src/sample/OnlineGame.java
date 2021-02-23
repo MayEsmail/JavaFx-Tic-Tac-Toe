@@ -17,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+import javafx.scene.layout.FlowPane;
 
 public class OnlineGame extends Controller implements Initializable{
     volatile String message = "";
@@ -46,7 +47,7 @@ public class OnlineGame extends Controller implements Initializable{
     @FXML
     private Button btn9;
     @FXML
-    private AnchorPane onlineGame;
+    private FlowPane onlineGame;
 
     public void onPlay(ActionEvent event){
 //        counter++

@@ -11,21 +11,22 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class Login_or_RegisterController {
     @FXML
-    private AnchorPane parent_menu2;
+    private FlowPane parent_menu2;
     @FXML
     private void login(ActionEvent event) {
         try {
-//           Parent Login_Parent=FXMLLoader.load(getClass().getResource(".fxml"));
-//           Scene Login_Scene=new Scene(Login_Parent);
-//           Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
-//           App_Stage.setScene(Login_Scene);
-//           App_Stage.show();
-            AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("login.fxml"));
-            parent_menu2.getChildren().setAll(fxmlLoader);
+           Parent Login_Parent=FXMLLoader.load(getClass().getResource("login.fxml"));
+           Scene Login_Scene=new Scene(Login_Parent);
+           Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
+           App_Stage.setScene(Login_Scene);
+           App_Stage.show();
+//            FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("login.fxml"));
+//            parent_menu2.getChildren().setAll(fxmlLoader);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -34,9 +35,15 @@ public class Login_or_RegisterController {
 
     @FXML
     private void register(ActionEvent event) throws IOException {
+        
+        Parent signUp_Parent=FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
+        Scene signUp_Scene=new Scene(signUp_Parent);
+        Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
+        App_Stage.setScene(signUp_Scene);
+        App_Stage.show();
 
-        AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
-        parent_menu2.getChildren().setAll(fxmlLoader);
+//        FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
+//        parent_menu2.getChildren().setAll(fxmlLoader);
 
     }
 
@@ -48,6 +55,9 @@ public class Login_or_RegisterController {
            Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
            App_Stage.setScene(Menu_Scene);
            App_Stage.show();
+           
+//        AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Menu.fxml"));
+//        parent_menu2.getChildren().setAll(fxmlLoader);
         } catch(IOException e) {
             e.printStackTrace();
         }

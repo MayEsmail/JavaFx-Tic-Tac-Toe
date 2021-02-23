@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 
@@ -21,13 +22,13 @@ public class MenuController {
     public void PlayOnline(ActionEvent event) throws  Exception{
         if(!is_loggedin){
            try {
-//                Parent Menu2_Parent=FXMLLoader.load(getClass().getResource("Login_or_Register.fxml"));
-//                Scene Menu2_Scene=new Scene(Menu2_Parent);
-//                Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
-//                App_Stage.setScene(Menu2_Scene);
-//                App_Stage.show();
-            AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Login_or_Register.fxml"));
-            rootPane.getChildren().setAll(fxmlLoader);
+                Parent Menu2_Parent=FXMLLoader.load(getClass().getResource("Login_or_Register.fxml"));
+                Scene Menu2_Scene=new Scene(Menu2_Parent);
+                Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
+                App_Stage.setScene(Menu2_Scene);
+                App_Stage.show();
+//            FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Login_or_Register.fxml"));
+//            rootPane.getChildren().setAll(fxmlLoader);
             } catch(IOException e) {
                e.printStackTrace();
             }

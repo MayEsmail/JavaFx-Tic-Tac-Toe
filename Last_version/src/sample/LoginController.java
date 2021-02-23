@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 /**
@@ -32,7 +33,7 @@ public class LoginController{
      * Initializes the controller class.
      */
     @FXML
-    private AnchorPane parent_login;
+    private FlowPane parent_login;
     @FXML
     private TextField loginIdField;
     @FXML
@@ -58,20 +59,39 @@ public class LoginController{
             String idCheck = databaseObj.loginPlayer(Integer.parseInt(validInput));
             if(idCheck.equals(""))
             {
-                AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
-                parent_login.getChildren().setAll(fxmlLoader);
+                Parent invalidId_Parent=FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
+                Scene invalid_Scene=new Scene(invalidId_Parent);
+                Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
+                App_Stage.setScene(invalid_Scene);
+                App_Stage.show();
+                
+//                FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
+//                parent_login.getChildren().setAll(fxmlLoader);
             }
             else
             {
                 MenuController.computerPlay=false;
-                AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
-                parent_login.getChildren().setAll(fxmlLoader);
+                
+                Parent game_Parent=FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
+                Scene game_Scene=new Scene(game_Parent);
+                Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
+                App_Stage.setScene(game_Scene);
+                App_Stage.show();
+                
+//                AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
+//                parent_login.getChildren().setAll(fxmlLoader);
             }
         }
         else
         {
-            AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
-            parent_login.getChildren().setAll(fxmlLoader);
+            Parent invalidId_Parent=FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
+            Scene invalid_Scene=new Scene(invalidId_Parent);
+            Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
+            App_Stage.setScene(invalid_Scene);
+            App_Stage.show();
+            
+//            FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
+//            parent_login.getChildren().setAll(fxmlLoader);
         }
 
     }
