@@ -46,6 +46,8 @@ public class OnlineGame extends Controller implements Initializable{
     @FXML
     private Button btn9;
     @FXML
+    private Button backBtn;
+    @FXML
     private AnchorPane onlineGame;
 
     public void onPlay(ActionEvent event){
@@ -56,6 +58,8 @@ public class OnlineGame extends Controller implements Initializable{
             btn.setText(playerTurn);
             setButtonsState(true);
             end();
+            if(gameEnd)
+                backBtn.setVisible(true);
         }
 
     }
@@ -90,6 +94,7 @@ public class OnlineGame extends Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        backBtn.setVisible(false);
         initializeList();
 
         try{
@@ -189,6 +194,8 @@ public class OnlineGame extends Controller implements Initializable{
                         break;
                 }
                 end();
+                if (gameEnd)
+                    backBtn.setVisible(true);
             }
         });
     }
