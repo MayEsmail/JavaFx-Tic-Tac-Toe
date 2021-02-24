@@ -19,17 +19,17 @@ import javafx.scene.text.Font;
 public class LeaderBoard implements Initializable{
 
     @FXML
-    TableView<TableContent> buildLeaderBoard;
+    private TableView<TableContent> buildLeaderBoard;
     @FXML
-    TableColumn<TableContent , String> rank_column;
+    private TableColumn<TableContent , String> rank_column;
     @FXML
-    TableColumn<TableContent , String> name_column;
+    private TableColumn<TableContent , String> name_column;
     @FXML
-    TableColumn<TableContent , String> win_column;
+    private TableColumn<TableContent , String> win_column;
     @FXML
-    TableColumn<TableContent , String> lose_column;
+    private TableColumn<TableContent , String> lose_column;
     @FXML
-    TableColumn<TableContent , String> score_column;
+    private TableColumn<TableContent , String> score_column;
     public void initialize(URL location, ResourceBundle resources) {
         rank_column.setCellValueFactory(new PropertyValueFactory<>("rank"));
         name_column.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -37,7 +37,7 @@ public class LeaderBoard implements Initializable{
         lose_column.setCellValueFactory(new PropertyValueFactory<>("lose"));
         score_column.setCellValueFactory(new PropertyValueFactory<>("score"));
         buildLeaderBoard.setItems(getRecords());
-        buildLeaderBoard.getColumns().addAll(rank_column , name_column , win_column , lose_column , score_column);
+        //buildLeaderBoard.getColumns().addAll(rank_column , name_column , win_column , lose_column , score_column);
     } 
     public void buildLeaderBoard() throws IOException
     {
@@ -105,6 +105,7 @@ public class LeaderBoard implements Initializable{
          ObservableList<TableContent> content = FXCollections.observableArrayList();
          GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
         String[][] data = databaseObj.displayLeaderBoard();
+        System.out.println(data);
          for (int i = 0; i < data.length; i++)
          {
              content.add(new TableContent(data[i][0], data[i][1], data[i][3], data[i][4], data[i][2]));

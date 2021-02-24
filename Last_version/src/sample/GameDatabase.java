@@ -5,7 +5,7 @@
  */
 package sample;
 import java.sql.*;
-import java.util.*; 
+import java.util.*;
 /**
  *
  * @author hp
@@ -20,10 +20,10 @@ enum PlayerState {
   LOSE,
   TIE
 }
-public class GameDatabase 
+public class GameDatabase
 {
     static Connection con;
-    private final static String  DATABASE_NAME = "JavaGame";
+    private final static String  DATABASE_NAME = "javagame";
     private final static String USER_NAME = "root";
     private final static String  PASSWORD = "12345";
     private final static String TIC_TAC_TOE_GAME = "TicTacTocGame";
@@ -32,20 +32,21 @@ public class GameDatabase
     {
             GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
             databaseObj.displayLeaderBoard();
-            databaseObj.addNewPlayer("Ali","000");
-            databaseObj.displayLeaderBoard();
-            databaseObj.updatePlayerRecord(5 , PlayerState.WIN);
-            databaseObj.updatePlayerRecord(6 , PlayerState.LOSE);
-            databaseObj.updatePlayerRecord(7 , PlayerState.TIE);
-            databaseObj.displayLeaderBoard();
-            databaseObj.removePlayer(29);
-            databaseObj.displayLeaderBoard();
-            databaseObj.removePlayer(30);
-            databaseObj.displayLeaderBoard();
-            databaseObj.removePlayer(30); 
-            databaseObj.displayLeaderBoard();
-            databaseObj.editPlayerName(1,"Dakhly");
-            databaseObj.displayLeaderBoard();
+            System.out.print(databaseObj.displayUserInfo(1).get("Name"));
+//            databaseObj.addNewPlayer("Ali","000");
+//            databaseObj.displayLeaderBoard();
+//            databaseObj.updatePlayerRecord(5 , PlayerState.WIN);
+//            databaseObj.updatePlayerRecord(6 , PlayerState.LOSE);
+//            databaseObj.updatePlayerRecord(7 , PlayerState.TIE);
+//            databaseObj.displayLeaderBoard();
+//            databaseObj.removePlayer(29);
+//            databaseObj.displayLeaderBoard();
+//            databaseObj.removePlayer(30);
+//            databaseObj.displayLeaderBoard();
+//            databaseObj.removePlayer(30);
+//            databaseObj.displayLeaderBoard();
+//            databaseObj.editPlayerName(1,"Dakhly");
+//            databaseObj.displayLeaderBoard();
             
     }
 	public GameDatabase(Game userGame)
@@ -65,8 +66,8 @@ public class GameDatabase
     private static void connectDB() throws SQLException
     {
         //Conecct with MySQL database management system using Database name, User name and User password. 
-        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + DATABASE_NAME , USER_NAME , PASSWORD);
+//        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+        con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javagame"  , USER_NAME , PASSWORD);
     }
     
     private static void disconnectDB() throws SQLException
@@ -75,7 +76,8 @@ public class GameDatabase
         con.close();
     } 
     //user information
-    public String[] displayUserInfo(int id)
+    //public String[] displayUserInfo(int id)
+    public HashMap<String, String> displayUserInfo(int id)
     {
         try
         {
@@ -91,24 +93,40 @@ public class GameDatabase
             }
             ResultSet rs = stmt.executeQuery(queryString);
             int counter = 1;
-            String[] data = new String[7];
+            //String[] data = new String[7];
+            HashMap<String, String> data = new HashMap<String, String>();
             while(rs.next())
             {
                 if(rs.getInt("Id") == id)
                 {
-                    data[0] = Integer.toString(rs.getInt("Id"));
-                    data[1] = rs.getString("Name");
-                    data[2] = Integer.toString(counter);
-                    data[3] = Integer.toString(rs.getInt("Score"));
-                    data[4] = Integer.toString(rs.getInt("Win"));
-                    data[5] = Integer.toString(rs.getInt("Lose"));
+                    
+//                    data[0] = Integer.toString(rs.getInt("Id"));
+//                    data[1] = rs.getString("Name");
+//                    data[2] = Integer.toString(counter);
+//                    data[3] = Integer.toString(rs.getInt("Score"));
+//                    data[4] = Integer.toString(rs.getInt("Win"));
+//                    data[5] = Integer.toString(rs.getInt("Lose"));
+//                    if(rs.getInt("Lose") != 0)
+//                    {
+//                        data[6] = Integer.toString(rs.getInt("Win") * 100 / (rs.getInt("Lose") + rs.getInt("Win")));
+//                    }
+//                    else
+//                    {
+//                        data[6] = "100";
+//                    }
+                    data.put("Id", Integer.toString(rs.getInt("Id")));
+                    data.put("Name", rs.getString("Name"));
+                    data.put("Rank", Integer.toString(counter));
+                    data.put("Score", Integer.toString(rs.getInt("Score")));
+                    data.put("Win", Integer.toString(rs.getInt("Win")));
+                    data.put("Lose", Integer.toString(rs.getInt("Lose")));
                     if(rs.getInt("Lose") != 0)
                     {
-                        data[6] = Integer.toString(rs.getInt("Win") * 100 / (rs.getInt("Lose") + rs.getInt("Win")));
+                        data.put("percentage", Integer.toString(rs.getInt("Win") * 100 / (rs.getInt("Lose") + rs.getInt("Win"))));
                     }
                     else
                     {
-                        data[6] = "100";
+                        data.put("percentage", "100");;
                     }
                 }
                 counter++;
@@ -127,6 +145,7 @@ public class GameDatabase
     {
         try
         {
+            //Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
             Statement stmt = con.createStatement();
             String queryString;
             if(SelectedGame == Game.TIC_TAC_TOE)
@@ -156,6 +175,7 @@ public class GameDatabase
                 data[counter][4] = Integer.toString(rs.getInt("Lose"));
                 counter++;
             }
+//            System.out.println(data[1][3]);
             stmt.close();
             return data;
         }

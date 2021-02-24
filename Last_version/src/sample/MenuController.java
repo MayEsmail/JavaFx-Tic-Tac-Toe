@@ -74,4 +74,12 @@ public class MenuController {
             e.printStackTrace();
         }
     }
+    public void view_leaderboard(){
+        try{
+        AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("LeaderBoard.fxml"));
+        rootPane.getChildren().setAll(fxmlLoader);
+    } catch(Exception e) {
+        e.printStackTrace();
+    }
+    }
 }

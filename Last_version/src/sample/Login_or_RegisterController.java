@@ -20,13 +20,13 @@ public class Login_or_RegisterController {
     @FXML
     private void login(ActionEvent event) {
         try {
-           Parent Login_Parent=FXMLLoader.load(getClass().getResource("login.fxml"));
-           Scene Login_Scene=new Scene(Login_Parent);
-           Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
-           App_Stage.setScene(Login_Scene);
-           App_Stage.show();
-//            FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("login.fxml"));
-//            parent_menu2.getChildren().setAll(fxmlLoader);
+//           Parent Login_Parent=FXMLLoader.load(getClass().getResource("login.fxml"));
+//           Scene Login_Scene=new Scene(Login_Parent);
+//           Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
+//           App_Stage.setScene(Login_Scene);
+//           App_Stage.show();
+            FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("login.fxml"));
+            parent_menu2.getChildren().setAll(fxmlLoader);
         } catch(IOException e) {
             e.printStackTrace();
         }
@@ -36,28 +36,28 @@ public class Login_or_RegisterController {
     @FXML
     private void register(ActionEvent event) throws IOException {
         
-        Parent signUp_Parent=FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
-        Scene signUp_Scene=new Scene(signUp_Parent);
-        Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
-        App_Stage.setScene(signUp_Scene);
-        App_Stage.show();
+//        Parent signUp_Parent=FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
+//        Scene signUp_Scene=new Scene(signUp_Parent);
+//        Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
+//        App_Stage.setScene(signUp_Scene);
+//        App_Stage.show();
 
-//        FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
-//        parent_menu2.getChildren().setAll(fxmlLoader);
+        FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("SingUpScreen.fxml"));
+        parent_menu2.getChildren().setAll(fxmlLoader);
 
     }
 
     @FXML
     private void back(ActionEvent event) {
         try {
-           Parent Menu_Parent=FXMLLoader.load(getClass().getResource("Menu.fxml"));
-           Scene Menu_Scene=new Scene(Menu_Parent);
-           Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
-           App_Stage.setScene(Menu_Scene);
-           App_Stage.show();
+//           Parent Menu_Parent=FXMLLoader.load(getClass().getResource("Menu.fxml"));
+//           Scene Menu_Scene=new Scene(Menu_Parent);
+//           Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
+//           App_Stage.setScene(Menu_Scene);
+//           App_Stage.show();
            
-//        AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Menu.fxml"));
-//        parent_menu2.getChildren().setAll(fxmlLoader);
+        AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Menu.fxml"));
+            parent_menu2.getChildren().setAll(fxmlLoader);
         } catch(IOException e) {
             e.printStackTrace();
         }

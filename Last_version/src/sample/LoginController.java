@@ -50,6 +50,7 @@ public class LoginController{
     private void login(ActionEvent event) throws IOException{
         //check database
         GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
+        System.out.println(Game.TIC_TAC_TOE);
         int idNumber;
         String validInput = loginIdField.getText();
         Pattern p = Pattern.compile("[0-9]+");
