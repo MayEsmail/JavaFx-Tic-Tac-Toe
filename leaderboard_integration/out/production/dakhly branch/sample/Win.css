@@ -1,0 +1,36 @@
+#parent{
+    -fx-background-image: url("resources/bg2.gif");
+}
+#parent_lose{
+    -fx-background-image: url("resources/lose_bg.gif");
+    -fx-background-size: 34% 100%;
+}
+#parent_draw{
+    -fx-background-image: url("resources/drawbg1.gif");
+    -fx-background-size: 100% 100%;
+}
+
+#parent_login{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#parent_profile{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#parent_menu2{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#getIdScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#InvalidIdScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#signUpScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
