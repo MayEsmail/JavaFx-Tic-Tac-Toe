@@ -1,5 +1,4 @@
 package sample;
-
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -55,7 +54,7 @@ public class Controller implements Initializable {
     private Label sPScore;
     private String player = "X";
     Button[] buttons=new Button[9];
-    private char winner='-';
+    public char winner='-';
     Stage App_Stage;
     public void initializeList(){
         buttons[0] = one;
@@ -69,10 +68,6 @@ public class Controller implements Initializable {
         buttons[8] = nine;
 
     }
-
-
-
-
     private void winGround(Button b1,Button b2,Button b3){
         b1.setStyle("-fx-background-color: yellow");
         b2.setStyle("-fx-background-color: yellow");
@@ -82,12 +77,10 @@ public class Controller implements Initializable {
             winner='X';
         else
             winner='O';
-        change_screen(winner);
+        if(MenuController.computerPlay||MenuController.local)
+            change_screen(winner);
     }
-
-
-
-    public void back() {
+    public void back(){
         try {
             AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Menu.fxml"));
             rootPane2.getChildren().setAll(fxmlLoader);
@@ -96,6 +89,7 @@ public class Controller implements Initializable {
         }
     }
     public void playAction(ActionEvent e){
+        App_Stage= (Stage)((Node) e.getSource()).getScene().getWindow();
         Button button=(Button) e.getSource();
         if(gameEnd==false && button.getText().equals("")){
             //////////multiplay
@@ -116,7 +110,6 @@ public class Controller implements Initializable {
             //////////single play
 
             if(MenuController.computerPlay){
-                App_Stage= (Stage)((Node) e.getSource()).getScene().getWindow();
                 counter++;
                 turnX=true;
                 button.setStyle("-fx-text-fill: #ad03fc");
@@ -140,40 +133,37 @@ public class Controller implements Initializable {
             }
         }
     }
+    private void loadScene(String s){
+        try {
+            Parent next_Parent=FXMLLoader.load(getClass().getResource(s));
+            Scene next_Scene=new Scene(next_Parent);
+            App_Stage.setScene(next_Scene);
+            App_Stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void change_screen(char myWinner){
-        if(MenuController.computerPlay||MenuController.online){
-            //int sec=LocalDateTime.now().getSecond();
-            //while(LocalDateTime.now().getSecond()<sec+2);
-            if(player.equals(""+myWinner)){
-                try {
-                    Parent Win_Parent=FXMLLoader.load(getClass().getResource("Win.fxml"));
-                    Scene Win_Scene=new Scene(Win_Parent);
-                    App_Stage.setScene(Win_Scene);
-                    App_Stage.show();
-                } catch(IOException e) {
-                    e.printStackTrace();
-                }
+        //int sec=LocalDateTime.now().getSecond();
+        //while(LocalDateTime.now().getSecond()<sec+2);
+        if(MenuController.local){
+            if(myWinner=='X'){
+                loadScene("Local_XWin.fxml");
             }
-            else if(myWinner=='-'){
-                try {
-                    Parent Draw_Parent=FXMLLoader.load(getClass().getResource("Draw.fxml"));
-                    Scene Draw_Scene=new Scene(Draw_Parent);
-                    App_Stage.setScene(Draw_Scene);
-                    App_Stage.show();
-                } catch(IOException e){
-                    e.printStackTrace();
-                }
+            else if(myWinner=='O'){
+                loadScene("Local_OWin.fxml");
             }
             else{
-                try {
-                    Parent Lose_Parent=FXMLLoader.load(getClass().getResource("lose.fxml"));
-                    Scene Lose_Scene=new Scene(Lose_Parent);
-                    App_Stage.setScene(Lose_Scene);
-                    App_Stage.show();
-                } catch(Exception e) {
-                    e.printStackTrace();
-                }
+                loadScene("Draw.fxml");
             }
+        }
+        else if(MenuController.computerPlay){
+            if(player.equals(""+myWinner))
+                loadScene("Win.fxml");
+            else if(myWinner=='-')
+               loadScene("Draw.fxml");
+            else
+                loadScene("lose.fxml");
         }
     }
     public void end(){
@@ -220,7 +210,8 @@ public class Controller implements Initializable {
                 gameEnd=true;
                 turnX=true;
                 counter=0;
-                change_screen(winner);
+                if(MenuController.computerPlay||MenuController.local)
+                    change_screen(winner);
             }
         }
     }

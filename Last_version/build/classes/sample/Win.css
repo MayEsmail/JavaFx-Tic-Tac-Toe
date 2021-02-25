@@ -18,7 +18,7 @@
     -fx-background-image: url("resources/common_bg2.jpg");
     -fx-background-size: 50% 50%;
 }
-#parent_menu2{
+#parent_menu2,#parent_local{
     -fx-background-image: url("resources/common_bg2.jpg");
     -fx-background-size: 50% 50%;
 }
