@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane fx:id="getIdScreen" accessibleRole="BUTTON" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GetIdScreenBase">
+   <children>
+      <AnchorPane prefHeight="400" prefWidth="600" style="-fx-background-color: #1F2741; -fx-border-color: FFBB00; -fx-border-width: 5;">
+         <children>
+            <Label layoutX="77.0" layoutY="72.0" text="Welcome to the coolest XO game">
+               <font>
+                  <Font name="Forte" size="32.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#5f50c7" />
+                        <Stop color="#c750ad" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <Label layoutX="227.0" layoutY="134.0" text="Your ID is " textFill="#9250c7">
+               <font>
+                  <Font name="Forte" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="idField" alignment="CENTER" contentDisplay="CENTER" layoutX="265.0" layoutY="200.0" text="Label" textAlignment="CENTER" textFill="#ffbb00">
+               <font>
+                  <Font name="Forte" size="30.0" />
+               </font>
+            </Label>
+            <Button layoutX="248.0" layoutY="265.0" mnemonicParsing="false" onAction="#seeId" prefHeight="55.0" prefWidth="102.0" style="-fx-background-color: #6B11D2;" text="OK" textFill="WHITE">
+               <font>
+                  <Font name="Forte" size="30.0" />
+               </font>
+            </Button>
+          </children>
+      </AnchorPane>
+   </children>
+</FlowPane>

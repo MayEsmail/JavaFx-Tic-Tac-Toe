@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -11,6 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 
 public class Controller implements Initializable {
@@ -50,7 +55,8 @@ public class Controller implements Initializable {
     private Label sPScore;
     private String player = "X";
     Button[] buttons=new Button[9];
-
+    protected char winner='-';
+    Stage App_Stage;
     public void initializeList(){
         buttons[0] = one;
         buttons[1] = two;
@@ -72,6 +78,14 @@ public class Controller implements Initializable {
         b2.setStyle("-fx-background-color: yellow");
         b3.setStyle("-fx-background-color: yellow");
         increaseScore(b1.getText());
+        if("X".equals(b1.getText()))
+            winner='X';
+        else
+            winner='O';
+        if(MenuController.computerPlay){
+            change_screen(winner);
+        }
+
     }
 
 
@@ -105,6 +119,7 @@ public class Controller implements Initializable {
             //////////single play
 
             if(MenuController.computerPlay){
+                App_Stage= (Stage)((Node) e.getSource()).getScene().getWindow();
                 counter++;
                 turnX=true;
                 button.setStyle("-fx-text-fill: #ad03fc");
@@ -128,6 +143,45 @@ public class Controller implements Initializable {
             }
         }
     }
+
+    public void change_screen(char myWinner){
+        boolean x = true;
+        if(MenuController.computerPlay || x){
+            //int sec=LocalDateTime.now().getSecond();
+            //while(LocalDateTime.now().getSecond()<sec+2);
+            if(player.equals(""+myWinner)){
+                try {
+                    Parent Win_Parent=FXMLLoader.load(getClass().getResource("Win.fxml"));
+                    Scene Win_Scene=new Scene(Win_Parent);
+                    App_Stage.setScene(Win_Scene);
+                    App_Stage.show();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else if(myWinner=='-'){
+                try {
+                    Parent Draw_Parent=FXMLLoader.load(getClass().getResource("Draw.fxml"));
+                    Scene Draw_Scene=new Scene(Draw_Parent);
+                    App_Stage.setScene(Draw_Scene);
+                    App_Stage.show();
+                } catch(IOException e){
+                    e.printStackTrace();
+                }
+            }
+            else{
+                try {
+                    Parent Lose_Parent=FXMLLoader.load(getClass().getResource("lose.fxml"));
+                    Scene Lose_Scene=new Scene(Lose_Parent);
+                    App_Stage.setScene(Lose_Scene);
+                    App_Stage.show();
+                } catch(Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public void end(){
         String[] text=new String[9];
         for(int i=0;i<9;i++){
@@ -172,13 +226,14 @@ public class Controller implements Initializable {
                 gameEnd=true;
                 turnX=true;
                 counter=0;
+                if(MenuController.computerPlay){
+                    change_screen(winner);
+                }
             }
         }
-
-
     }
     private void increaseScore(String player) {
-        if (player.equals("X")) {
+        if (player.toLowerCase().equals("x")) {
 
             fPScore.setText("Player X Score :" + ++xSCore);
             sPScore.setText("Player O Score :" + oScore);

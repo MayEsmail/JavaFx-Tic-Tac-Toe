@@ -50,12 +50,16 @@ class GameHandler extends Thread{
             symbol = "o";
 
         ps.println(symbol);
+        System.out.println(clientsVector);
         clientsVector.add(this);
         start();//start the thread
 
     }
 
     public void run(){
+        System.out.println(Thread.currentThread().getName());
+        if(Server.counter == 2)
+            sendMessageToAll("u:x");
         if(Server.counter > 2)
             sendMessageToAll("go");
         while(true){
@@ -70,6 +74,19 @@ class GameHandler extends Thread{
                     s.close();
                     Server.counter -= 1;
 
+                }else if(str.trim().equals("close")){
+                    sendMessageToAll(str);
+                    Server.counter = 1;
+                    for(GameHandler ch : clientsVector){
+                        try{
+                            ch.ps.close();
+                            ch.dis.close();
+                            ch.s.close();
+                            System.out.println("Client closed");
+                        }catch (Exception ex){ex.printStackTrace();}
+                    }
+                    clientsVector.clear();
+                    break;
                 }else if(str.trim().length() == 0){
                     System.out.println("Empty Message");
                 }else{
@@ -80,6 +97,17 @@ class GameHandler extends Thread{
             }catch(Exception ex){}
 
         }
+
+        try{
+            this.stop();
+        }catch(Exception ex){ex.printStackTrace();}
+
+        /*try{
+            ps.close();
+            dis.close();
+            s.close();
+            System.out.println("Client closed");
+        }catch (Exception ex){ex.printStackTrace();}*/
     }
 
     public void sendMessageToAll(String str){
