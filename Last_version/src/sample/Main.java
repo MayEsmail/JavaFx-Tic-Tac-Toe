@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,10 +11,15 @@ public class Main extends Application {
     public  Parent root;
     @Override
     public void start(Stage primaryStage) throws Exception{
-         root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
         primaryStage.setTitle("Tic Tac Toe");
         primaryStage.setScene(new Scene(root, 859.0, 600));
         primaryStage.show();
+    }
+    public void stop() throws Exception{
+        if(OnlineGame.checkDB == true)
+            OnlineGame.databaseObj.LoginOut(OnlineGame.userId);
+        super.stop();
     }
 
 

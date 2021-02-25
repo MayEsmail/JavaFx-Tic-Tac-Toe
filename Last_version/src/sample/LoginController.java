@@ -61,8 +61,6 @@ public class LoginController{
         if(m.matches())
         {
             String idCheck = OnlineGame.databaseObj.loginPlayer(Integer.parseInt(validInput));
-            OnlineGame.userName = idCheck;
-            OnlineGame.userId = Integer.parseInt(validInput);
             if(idCheck.equals(""))
             {
                 Parent invalidId_Parent=FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
@@ -74,8 +72,10 @@ public class LoginController{
 //                FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("InvalidLogin.fxml"));
 //                parent_login.getChildren().setAll(fxmlLoader);
             }
-            else
+            else if (OnlineGame.databaseObj.checkLogin(Integer.parseInt(validInput)))
             {
+                OnlineGame.userName = idCheck;
+                OnlineGame.userId = Integer.parseInt(validInput);
                 MenuController.computerPlay=false;
                 
                 Parent game_Parent=FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
