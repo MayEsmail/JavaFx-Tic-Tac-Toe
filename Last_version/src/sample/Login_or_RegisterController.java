@@ -57,7 +57,7 @@ public class Login_or_RegisterController {
 //           App_Stage.show();
            
         AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Menu.fxml"));
-            parent_menu2.getChildren().setAll(fxmlLoader);
+        parent_menu2.getChildren().setAll(fxmlLoader);
         } catch(IOException e) {
             e.printStackTrace();
         }

@@ -27,7 +27,7 @@ public class GameDatabase
     private final static String USER_NAME = "root";
     private final static String  PASSWORD = "12345";
     private final static String TIC_TAC_TOE_GAME = "TicTacTocGame";
-    private static Game SelectedGame;
+    private String selectedGame;
     public static void main(String[] args)
     {
             GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
@@ -51,8 +51,14 @@ public class GameDatabase
     }
 	public GameDatabase(Game userGame)
         {
-            
-            SelectedGame = userGame;
+            if(userGame == Game.TIC_TAC_TOE)
+            {    
+                selectedGame = GameDatabase.TIC_TAC_TOE_GAME;
+            }
+            else 
+            {
+                selectedGame = "anotherGame";
+            }
             try
             {
                 //stablish the connection
@@ -67,10 +73,14 @@ public class GameDatabase
     {
         //Conecct with MySQL database management system using Database name, User name and User password. 
 //        DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+        }catch(Exception ex){}
         con = DriverManager.getConnection("jdbc:mysql://localhost:3306/javagame"  , USER_NAME , PASSWORD);
     }
     
-    private static void disconnectDB() throws SQLException
+    public static void disconnectDB() throws SQLException
     {
         //Disconnect with database. 
         con.close();
@@ -82,15 +92,8 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("select * from " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Score DESC");
-            }
-            else 
-            {
-                queryString = new String("select * from" + "anotherGame" + " ORDER BY Score DESC");
-            }
+            String queryString = new String("select * from " + selectedGame + " ORDER BY Score DESC");
+            
             ResultSet rs = stmt.executeQuery(queryString);
             int counter = 1;
             //String[] data = new String[7];
@@ -145,17 +148,9 @@ public class GameDatabase
     {
         try
         {
-            //Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-            Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("select * from " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Score DESC");
-            }
-            else 
-            {
-                queryString = new String("select * from" + "anotherGame" + " ORDER BY Score DESC");
-            }
+            Statement stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+            //Statement stmt = con.createStatement();
+            String queryString = new String("select * from " + selectedGame + " ORDER BY Score DESC");         
             ResultSet rs = stmt.executeQuery(queryString);
             int counter = 1;
             while(rs.next())
@@ -193,24 +188,9 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("INSERT INTO " + GameDatabase.TIC_TAC_TOE_GAME + "(Name,Password,SavedFile) VALUES('" + name + "'," + password + ",null)");
-            }
-            else 
-            {
-                queryString = new String("INSERT INTO " + "anotherGame" + "VALUES('" + name + "','" + password + "',null");
-            }
+            String queryString = new String("INSERT INTO " + selectedGame + "(Name,Password,SavedFile) VALUES('" + name + "'," + password + ",null)");
             stmt.executeUpdate(queryString);
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("SELECT Id FROM " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Id DESC LIMIT 1");
-            }
-            else 
-            {
-                queryString = new String("SELECT Id FROM " + "anotherGame" + " ORDER BY Id DESC LIMIT 1");
-            }
+            queryString = new String("SELECT Id FROM " + selectedGame + " ORDER BY Id DESC LIMIT 1");
             ResultSet rs = stmt.executeQuery(queryString);
             rs.next();
             ret = rs.getInt("Id");
@@ -229,24 +209,9 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("INSERT INTO " + GameDatabase.TIC_TAC_TOE_GAME + "(Name,Password,SavedFile) VALUES('" + name + "',null,null)");
-            }
-            else 
-            {
-                queryString = new String("INSERT INTO " + "anotherGame" + "VALUES('" + name + "',null,0,0,0,null");
-            }
+            String queryString = new String("INSERT INTO " + selectedGame + "(Name,Password,SavedFile) VALUES('" + name + "',null,null)");
             stmt.executeUpdate(queryString);
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("SELECT Id FROM " + GameDatabase.TIC_TAC_TOE_GAME + " ORDER BY Id DESC LIMIT 1");
-            }
-            else 
-            {
-                queryString = new String("SELECT Id FROM " + "anotherGame" + " ORDER BY Id DESC LIMIT 1");
-            }
+            queryString = new String("SELECT Id FROM " + selectedGame + " ORDER BY Id DESC LIMIT 1");
             ResultSet rs = stmt.executeQuery(queryString);
             rs.next();
             ret = rs.getInt("Id");
@@ -268,55 +233,23 @@ public class GameDatabase
             int oldWin;
             int oldLose;
             Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("SELECT * FROM " + GameDatabase.TIC_TAC_TOE_GAME + " WHERE Id = " + id);
-            }
-            else 
-            {
-                queryString = new String("SELECT * FROM " + "anotherGame" + " WHERE Id = " + id);
-            }
+            String queryString = new String("SELECT * FROM " + selectedGame + " WHERE Id = " + id);
             ResultSet rs = stmt.executeQuery(queryString);
             rs.next();
             oldScore = rs.getInt("Score");
             oldLose = rs.getInt("Lose");
             oldWin = rs.getInt("Win");
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                switch(pState)
-                {
-                    case WIN:
-                        queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Score = " 
-                        + (oldScore + 10) + ", Win = " + (oldWin + 1) + " WHERE Id = " + id);
-                        break;
-                    case LOSE:
-                        queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Lose = " 
-                        + (oldLose + 1) + " WHERE Id = " + id);
-                        break;
-                    case TIE:
-                        queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Score = " 
-                        + (oldScore + 5) + " WHERE Id = " + id);
-                        break;
-                }
-            }
-            else 
+            switch(pState)
             {
-                switch(pState)
-                {
-                    case WIN:
-                        queryString = new String("UPDATE " + "anotherGame" + "SET Score = " 
-                        + (oldScore + 10) + ", Win = " + (oldWin + 1) + " WHERE Id = " + id);
-                        break;
-                    case LOSE:
-                        queryString = new String("UPDATE " + "anotherGame" + "SET Lose = " 
-                        + (oldLose + 1) + " WHERE Id = " + id);
-                        break;
-                    case TIE:
-                        queryString = new String("UPDATE " + "anotherGame" + "SET Score = " 
-                        + (oldScore + 5) + " WHERE Id = " + id);
-                        break;
-                }
+                case WIN:
+                    queryString = new String("UPDATE " + selectedGame + " SET Score = " + (oldScore + 10) + ", Win = " + (oldWin + 1) + " WHERE Id = " + id);
+                    break;
+                case LOSE:
+                    queryString = new String("UPDATE " + selectedGame + " SET Lose = " + (oldLose + 1) + " WHERE Id = " + id);
+                    break;
+                case TIE:
+                    queryString = new String("UPDATE " + selectedGame + " SET Score = " + (oldScore + 5) + " WHERE Id = " + id);
+                    break;
             }
             stmt.executeUpdate(queryString);
             stmt.close();
@@ -333,15 +266,7 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("DELETE FROM " + GameDatabase.TIC_TAC_TOE_GAME + " WHERE Id = " + id);
-            }
-            else 
-            {
-                queryString = new String("DELETE FROM " + "anotherGame"+ " WHERE Id = " + id);
-            }
+            String queryString = new String("DELETE FROM " + selectedGame + " WHERE Id = " + id);
             stmt.executeUpdate(queryString);
             stmt.close();
         }
@@ -357,15 +282,7 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("UPDATE " + GameDatabase.TIC_TAC_TOE_GAME + " SET Name = '" + name + "' WHERE Id = " + id);
-            }
-            else 
-            {
-                queryString = new String("UPDATE " + "anotherGame" + " SET Name = '" + name + "' WHERE Id = " + id);
-            }
+            String queryString = new String("UPDATE " + selectedGame + " SET Name = '" + name + "' WHERE Id = " + id);
             stmt.executeUpdate(queryString);
             stmt.close();
         }
@@ -379,15 +296,7 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString;
-            if(SelectedGame == Game.TIC_TAC_TOE)
-            {    
-                queryString = new String("SELECT * FROM " + GameDatabase.TIC_TAC_TOE_GAME + " WHERE Id = " + id);
-            }
-            else 
-            {
-                queryString = new String("DELETE FROM " + "anotherGame"+ " WHERE Id = " + id);
-            }           
+            String queryString = new String("SELECT * FROM " + selectedGame + " WHERE Id = " + id);
             ResultSet rs = stmt.executeQuery(queryString);
             if(rs.next())
             {
@@ -400,5 +309,44 @@ public class GameDatabase
                 exc.printStackTrace();
         } 
         return "";
+    }
+    public boolean checkLogin(int id)
+    {
+        try
+        {
+            Statement stmt = con.createStatement();
+            String queryString = new String("SELECT LoginStatus FROM " + selectedGame + " WHERE Id = " + id);
+            ResultSet rs = stmt.executeQuery(queryString);
+            if(rs.next())
+            {
+                if(! rs.getBoolean("LoginStatus"))
+                {
+                    queryString = new String("UPDATE " + selectedGame + " SET LoginStatus = TRUE WHERE Id = " + id);
+                    stmt.executeUpdate(queryString);
+                    stmt.close();
+                    return true;
+                }
+            }
+            stmt.close();
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        } 
+        return false;
+    }
+    public void LoginOut(int id)
+    {
+        try
+        {
+            Statement stmt = con.createStatement();
+            String queryString = new String("UPDATE " + selectedGame + " SET LoginStatus = FALSE WHERE Id = " + id);
+            stmt.executeUpdate(queryString);
+            stmt.close();
+        }
+        catch(SQLException exc)
+        {
+                exc.printStackTrace();
+        } 
     }
 }

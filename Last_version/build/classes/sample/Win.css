@@ -34,3 +34,11 @@
     -fx-background-image: url("resources/common_bg2.jpg");
     -fx-background-size: 50% 50%;
 }
+#leaderboard{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#parent_local{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}

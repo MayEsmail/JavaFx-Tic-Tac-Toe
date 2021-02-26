@@ -5,39 +5,49 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="859.0" style="-fx-background-color: #1F2741;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
+<AnchorPane fx:id="rootPane" prefHeight="442.0" prefWidth="857.0" style="-fx-background-color: #1F2741;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
    <children>
       <Label layoutX="245.0" layoutY="10.0" text="Welcome to Tic Tac Toe" textFill="WHITE">
          <font>
             <Font name="Comic Sans MS" size="37.0" />
          </font>
       </Label>
-      <Button layoutX="315.0" layoutY="92.0" mnemonicParsing="false" onAction="#PlayAgainstComp" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: white;" text="Play against Computer">
+      <Button layoutX="315.0" layoutY="90.0" mnemonicParsing="false" onAction="#PlayAgainstComp" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: white;" text="Play against Computer">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="316.0" layoutY="141.0" mnemonicParsing="false" onAction="#PlayLocally" prefHeight="32.0" prefWidth="241.0" style="-fx-background-color: white;" text="Play against your friend locally">
+      <Button layoutX="315.0" layoutY="135.0" mnemonicParsing="false" onAction="#PlayLocally" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: white;" text="Play against your friend locally">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="316.0" layoutY="340.0" mnemonicParsing="false" onAction="#Exit" prefHeight="26.0" prefWidth="241.0" style="-fx-background-color: white;" text="Exit">
+      <Button layoutX="315.0" layoutY="360.0" mnemonicParsing="false" onAction="#Exit" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: white;" text="Exit">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Button>
-      <Button layoutX="316.0" layoutY="194.0" mnemonicParsing="false" onAction="#PlayOnline" prefHeight="32.0" prefWidth="241.0" style="-fx-background-color: white;" text="Play against your friend online">
+      <Button layoutX="315.0" layoutY="180.0" mnemonicParsing="false" onAction="#PlayOnline" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: white;" text="Play against your friend online">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Button>
-      <Button id="view_profile" layoutX="316.0" layoutY="240.0" mnemonicParsing="false" onAction="#open_profile" prefHeight="32.0" prefWidth="241.0" style="-fx-background-color: white;" text="View My Profile">
+      <Button id="view_profile" layoutX="315.0" layoutY="225.0" mnemonicParsing="false" onAction="#open_profile" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: white;" text="View My Profile">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>
       </Button>
-      <Button id="view_leaderboard" layoutX="315.0" layoutY="290.0" mnemonicParsing="false" onAction="#view_leaderboard" prefHeight="32.0" prefWidth="241.0" style="-fx-background-color: white;" text="View LeaderBoard">
+      <Button layoutX="315.0" layoutY="270.0" mnemonicParsing="false" onAction="#viewGame" prefHeight="25.0" prefWidth="242.0" style="-fx-background-color: white;" text="Show Last Game">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button id="view_leaderboard" layoutX="315.0" layoutY="315.0" mnemonicParsing="false" onAction="#view_leaderboard" prefHeight="25.0" prefWidth="241.0" style="-fx-background-color: white;" text="View LeaderBoard">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="logoutButton" alignment="CENTER" layoutX="706.0" layoutY="41.0" mnemonicParsing="false" onAction="#logout" prefHeight="43.0" prefWidth="106.0" text="Log out" textAlignment="CENTER">
          <font>
             <Font name="Comic Sans MS" size="15.0" />
          </font>

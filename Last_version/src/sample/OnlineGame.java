@@ -1,23 +1,23 @@
 package sample;
 
-import java.io.PrintStream;
-import java.io.PrintWriter;
-import java.io.DataInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
-import javafx.scene.layout.FlowPane;
 
 public class OnlineGame extends Controller implements Initializable{
     volatile String message = "";
@@ -25,8 +25,12 @@ public class OnlineGame extends Controller implements Initializable{
     static Socket s;
     static BufferedReader din;
     static PrintStream dout;
-    String playerTurn = "x";
+    String playerTurn = "o";
+    static String userName = "";
+    static int userId;
     volatile boolean closeConnection = false;
+    static GameDatabase databaseObj;
+    static boolean checkDB = false;
 
     @FXML
     private Button btn1;
@@ -47,18 +51,76 @@ public class OnlineGame extends Controller implements Initializable{
     @FXML
     private Button btn9;
     @FXML
+    private Button backBtn;
+    @FXML
     private FlowPane onlineGame;
 
     public void onPlay(ActionEvent event){
-//        counter++
-        end();
         Button btn = (Button) event.getSource();
-        if(!gameEnd) {
+        App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
+        if(!gameEnd && btn.getText().length() == 0) {
             sendMsg(playerTurn + btn.getId().charAt(3));
             btn.setText(playerTurn);
+            if(playerTurn.equals("x"))
+                turnX = false;
+            if(playerTurn.equals("o"))
+                turnX = true;
+            System.out.println(turnX);
             setButtonsState(true);
+            end();
+            checkGameState();
         }
 
+    }
+
+    public void checkGameState(){
+        if(gameEnd) {
+            backBtn.setVisible(true);
+            dout.println("close");
+            if(winner == '-'){
+                databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.TIE);
+                change_screen("tie");
+            }else{
+                if(!turnX && playerTurn.equals("x")){
+                    databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.WIN);
+                    change_screen("win");
+                }else if(turnX && playerTurn.equals("o")){
+                    databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.WIN);
+                    change_screen("win");
+                }else{
+                    databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.LOSE);
+                    change_screen("lose");
+                }
+            }
+
+        }
+    }
+
+    public void change_screen(String state){
+        switch (state){
+            case "win":
+                loadScreen("Win.fxml");
+                break;
+            case "lose":
+                loadScreen("lose.fxml");
+                break;
+            case "tie":
+                loadScreen("Draw.fxml");
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void loadScreen(String screen){
+        try {
+            Parent Win_Parent=FXMLLoader.load(getClass().getResource(screen));
+            Scene Win_Scene=new Scene(Win_Parent);
+            App_Stage.setScene(Win_Scene);
+            App_Stage.show();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setButtonsState(boolean state){
@@ -91,7 +153,9 @@ public class OnlineGame extends Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        backBtn.setVisible(false);
         initializeList();
+        setButtonsState(true);
 
         try{
             s = new Socket("localhost", 5555);
@@ -107,6 +171,7 @@ public class OnlineGame extends Controller implements Initializable{
 
     public void sendMsg(String msg){
         dout.println(msg);
+        counter++;
     }
 
     public void initializeList(){
@@ -133,6 +198,12 @@ public class OnlineGame extends Controller implements Initializable{
                     recievedMessage = din.readLine();
                     if(recievedMessage.length() == 1)
                         playerTurn = recievedMessage;
+                    else if(recievedMessage.equals("u:x"))
+                        playerTurn = "x";
+                    else if(recievedMessage.equals("go"))
+                        setButtonsState(false);
+                    else if(recievedMessage.equals("close"))
+                        break;
                     else
                         playMove(recievedMessage);
                 }catch(Exception ex){}
@@ -143,6 +214,7 @@ public class OnlineGame extends Controller implements Initializable{
                 din.close();
                 dout.close();
                 s.close();
+                System.out.println("closed");
             }catch(Exception ex){}
         }
 
@@ -152,12 +224,14 @@ public class OnlineGame extends Controller implements Initializable{
         char position = play.charAt(1);
         String player = "" + play.charAt(0);
         if(player.equals("x"))
-            playerTurn = "o";
+            turnX = false;
         if(player.equals("o"))
-            playerTurn = "x";
+            turnX = true;
+        System.out.println(turnX);
         setButtonsState(false);
         Platform.runLater(new Runnable(){
             public void run(){
+                counter++;
                 switch(position){
                     case '1':
                         btn1.setText(player);
@@ -190,6 +264,9 @@ public class OnlineGame extends Controller implements Initializable{
                         break;
                 }
                 end();
+                checkGameState();
+                /*if (gameEnd)
+                    backBtn.setVisible(true);*/
             }
         });
     }

@@ -41,10 +41,15 @@ public class SingUpScreen implements  Initializable{
     } 
     public void createPlayer(ActionEvent event) throws IOException
     {
-        GameDatabase databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
+        if(!OnlineGame.checkDB){
+            OnlineGame.databaseObj = new GameDatabase(Game.TIC_TAC_TOE);
+            OnlineGame.checkDB = true;
+        }
         if(! playerName.getText().equals(""))
         {
-            newPlayerId = databaseObj.addNewPlayer(playerName.getText());
+            newPlayerId = OnlineGame.databaseObj.addNewPlayer(playerName.getText());
+            OnlineGame.userName = playerName.getText();
+            OnlineGame.userId = newPlayerId;
             Parent getId_Parent=FXMLLoader.load(getClass().getResource("GetIdScreen.fxml"));
             Scene gitId_Scene=new Scene(getId_Parent);
             Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 

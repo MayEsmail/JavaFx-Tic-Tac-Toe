@@ -29,12 +29,14 @@ public class GetIdScreenBase implements  Initializable{
     } 
     public void seeId(ActionEvent event) throws IOException
     {
+        
+        MenuController.is_loggedin = true;
         Parent game_Parent=FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
         Scene game_Scene=new Scene(game_Parent);
-        Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
+        Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
         App_Stage.setScene(game_Scene);
         App_Stage.show();
-//        AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
-//        getIdScreen.getChildren().setAll(fxmlLoader);
+        /*AnchorPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
+        getIdScreen.getChildren().setAll(fxmlLoader);*/
     }
 }
