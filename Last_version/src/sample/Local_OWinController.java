@@ -36,19 +36,19 @@ public class Local_OWinController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void backToMenu(ActionEvent event) {
         try {
-           Parent Menu_Parent=FXMLLoader.load(getClass().getResource("Menu.fxml"));
-           Scene Menu_Scene=new Scene(Menu_Parent);
-           Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
-           App_Stage.setScene(Menu_Scene);
-           App_Stage.show();
+            Parent Menu_Parent=FXMLLoader.load(getClass().getResource("Menu.fxml"));
+            Scene Menu_Scene=new Scene(Menu_Parent);
+            Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
+            App_Stage.setScene(Menu_Scene);
+            App_Stage.show();
         } catch(IOException e) {
             e.printStackTrace();
         }
     }
-    
+
 }

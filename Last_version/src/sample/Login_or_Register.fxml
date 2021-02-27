@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
-<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
@@ -14,16 +13,16 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane id="parent_menu2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="408.0" prefWidth="927.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login_or_RegisterController">
+<FlowPane fx:id="parent_menu2" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="927.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login_or_RegisterController">
    <children>
-      <BorderPane prefHeight="400.0" prefWidth="799.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;">
+      <BorderPane prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;">
          <top>
             <Label text="Welcome to Tic Tac Toe Online" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets top="20.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="Comic Sans MS Bold Italic" size="30.0" />
+                  <Font name="Comic Sans MS Bold Italic" size="35.0" />
                </font>
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0" startX="0.17619047619047618">
@@ -45,52 +44,40 @@
          <center>
             <VBox alignment="CENTER" maxHeight="256.0" prefHeight="256.0" prefWidth="300.0" style="-fx-max-width: 300; -fx-max-height: 250;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#login" prefHeight="33.0" prefWidth="250.0" style="-fx-background-color: white;" text="Login">
+                  <Button mnemonicParsing="false" onAction="#login" prefHeight="39.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="Login" textFill="WHITE">
                      <font>
-                        <Font name="Bookman Old Style Bold Italic" size="18.0" />
+                        <Font name="Bookman Old Style Bold Italic" size="21.0" />
                      </font>
                      <effect>
-                        <DropShadow blurType="GAUSSIAN" height="78.55" radius="33.2825" width="56.58">
-                           <input>
-                              <InnerShadow height="17.915" radius="7.686249999999999" width="14.83" />
-                           </input>
-                        </DropShadow>
+                        <DropShadow blurType="GAUSSIAN" color="#9f2fb1" height="37.5" radius="27.625" spread="0.7" width="75.0" />
                      </effect>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#register" prefHeight="33.0" prefWidth="250.0" style="-fx-background-color: white;" text="Register">
+                  <Button mnemonicParsing="false" onAction="#register" prefHeight="39.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="Register" textFill="#fffefe">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="Bookman Old Style Bold Italic" size="18.0" />
+                        <Font name="Bookman Old Style Bold Italic" size="21.0" />
                      </font>
                      <effect>
-                        <DropShadow blurType="GAUSSIAN" height="81.1" radius="25.025">
-                           <input>
-                              <InnerShadow blurType="GAUSSIAN" height="22.485" radius="11.11375" width="23.97" />
-                           </input>
-                        </DropShadow>
+                        <DropShadow blurType="GAUSSIAN" color="#9f2fb1" height="37.5" radius="27.625" spread="0.7" width="75.0" />
                      </effect>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="250.0" style="-fx-background-color: white;" text="Back">
+                  <Button mnemonicParsing="false" onAction="#back" prefHeight="39.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="Back" textFill="WHITE">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="Bookman Old Style Bold Italic" size="18.0" />
+                        <Font name="Bookman Old Style Bold Italic" size="21.0" />
                      </font>
                      <effect>
-                        <DropShadow height="80.3" radius="24.825">
-                           <input>
-                              <InnerShadow />
-                           </input>
-                        </DropShadow>
+                        <DropShadow color="#9f2fb1" height="37.5" radius="27.625" spread="0.7" width="75.0" />
                      </effect>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -100,7 +87,7 @@
             </VBox>
          </center>
          <effect>
-            <DropShadow height="1.0" radius="62.25" spread="0.1" width="250.0">
+            <DropShadow height="255.0" radius="125.75" spread="0.1" width="250.0">
                <input>
                   <DropShadow height="150.0" radius="74.5" width="150.0" />
                </input>

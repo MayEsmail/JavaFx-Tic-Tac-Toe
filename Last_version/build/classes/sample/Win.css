@@ -18,7 +18,27 @@
     -fx-background-image: url("resources/common_bg2.jpg");
     -fx-background-size: 50% 50%;
 }
-#parent_menu2,#parent_local{
+#parent_menu2{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#getIdScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#InvalidIdScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#signUpScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#leaderboard{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#parent_local{
     -fx-background-image: url("resources/common_bg2.jpg");
     -fx-background-size: 50% 50%;
 }

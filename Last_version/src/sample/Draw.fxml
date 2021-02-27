@@ -36,12 +36,12 @@
    <bottom>
       <BorderPane prefHeight="144.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <top>
-            <Button id="play_btn" mnemonicParsing="false" onAction="#PlayAgain" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: #5F1987;" stylesheets="@Win.css" text="Play Again" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
+            <Button id="play_btn" mnemonicParsing="false" onAction="#PlayAgain" prefHeight="32.0" prefWidth="322.0" style="-fx-background-color: #9f2fb1;" stylesheets="@Win.css" text="Play Again" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
                <font>
                   <Font name="Bookman Old Style Bold Italic" size="21.0" />
                </font>
                <effect>
-                  <DropShadow color="#ae79ad" height="118.6" radius="56.5775" spread="0.34" width="109.71" />
+                  <DropShadow color="#9f2fb1" height="40.0" radius="24.5" spread="0.7" width="60.0" />
                </effect>
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane fx:id="signUpScreen" alignment="CENTER" prefHeight="307.0" prefWidth="518.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SingUpScreen">
+   <children>
+      <AnchorPane prefHeight="297.0" prefWidth="507.0" style="-fx-background-color: #1F2741; -fx-border-color: FFBB00; -fx-border-width: 5;">
+         <children>
+            <Label alignment="CENTER" layoutX="83.0" layoutY="47.0" prefHeight="40.0" prefWidth="341.0" text="Sign Up" textAlignment="CENTER" textFill="#4eb6c7">
+               <font>
+                  <Font name="Forte" size="26.0" />
+               </font>
+            </Label>
+            <Button defaultButton="true" layoutX="106.0" layoutY="205.0" mnemonicParsing="false" onAction="#createPlayer" prefHeight="47.0" prefWidth="97.0" style="-fx-background-color: FFBB00;" text="Create" textAlignment="CENTER">
+               <font>
+                  <Font name="Forte" size="19.0" />
+               </font>
+            </Button>
+            <TextField fx:id="playerName" alignment="TOP_CENTER" layoutX="106.0" layoutY="125.0" prefHeight="47.0" prefWidth="294.0" promptText="Player Name">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <Button cancelButton="true" layoutX="310.0" layoutY="205.0" mnemonicParsing="false" onAction="#canelSingUp" prefHeight="47.0" prefWidth="90.0" style="-fx-background-color: #6B11D2;" text="Cancel" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Forte" size="19.0" />
+               </font>
+            </Button>
+            <Label text="Label" />
+         </children>
+      </AnchorPane>
+   </children>
+</FlowPane>
