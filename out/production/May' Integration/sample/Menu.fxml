@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane fx:id="parent_menu" alignment="CENTER" prefHeight="583.0" prefWidth="945.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuController">
+   <children>
+      <BorderPane prefHeight="430.0" prefWidth="800.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;">
+         <top>
+            <Label text="Welcome to Tic Tac Toe" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="40.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#c31d9f" />
+                        <Stop color="#e0eb08" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+               <effect>
+                  <Glow level="1.0">
+                     <input>
+                        <DropShadow height="60.0" offsetY="7.0" radius="15.25" spread="0.7" width="3.0" />
+                     </input>
+                  </Glow>
+               </effect>
+            </Label>
+         </top>
+         <left>
+            <VBox alignment="CENTER" prefHeight="294.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#PlayAgainstComp" prefHeight="43.0" prefWidth="350.0" style="-fx-background-color: #9f2fb1;" text="Play against Computer" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="50.0" radius="27.0" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#PlayLocally" prefHeight="43.0" prefWidth="349.0" style="-fx-background-color: #9f2fb1;" text="Play against your friend locally" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="50.0" radius="27.0" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#PlayOnline" prefHeight="43.0" prefWidth="354.0" style="-fx-background-color: #9f2fb1;" text="Play against your friend online" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="55.0" radius="28.25" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#viewGame" prefHeight="43.0" prefWidth="355.0" style="-fx-background-color: #9f2fb1;" text="Show Last Game" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="55.0" radius="28.25" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
+         <right>
+            <VBox alignment="CENTER" prefHeight="294.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button id="view_profile" mnemonicParsing="false" onAction="#open_profile" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="View My Profile" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <effect>
+                        <DropShadow height="50.0" radius="27.0" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+                  <Button id="view_leaderboard" mnemonicParsing="false" onAction="#view_leaderboard" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="View LeaderBoard" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow color="#18051c" height="50.0" radius="27.0" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+                  <Button fx:id="logoutButton" alignment="CENTER" mnemonicParsing="false" onAction="#logout" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="Log out" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="40.0" radius="24.5" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#Exit" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="Exit" textFill="WHITE">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <effect>
+                        <DropShadow height="40.0" radius="24.5" spread="0.7" width="60.0" />
+                     </effect>
+                  </Button>
+               </children>
+               <BorderPane.margin>
+                  <Insets top="20.0" />
+               </BorderPane.margin>
+            </VBox>
+         </right>
+         <effect>
+            <DropShadow height="255.0" radius="127.0" spread="0.1" width="255.0">
+               <input>
+                  <DropShadow height="150.0" radius="74.5" width="150.0" />
+               </input>
+            </DropShadow>
+         </effect>
+      </BorderPane>
+   </children>
+</FlowPane>

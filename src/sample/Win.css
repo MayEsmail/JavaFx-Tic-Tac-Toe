@@ -1,0 +1,81 @@
+#parent{
+    -fx-background-image: url("resources/bg2.gif");
+}
+#parent_lose{
+    -fx-background-image: url("resources/lose_bg.gif");
+    -fx-background-size: 34% 100%;
+}
+#parent_draw{
+    -fx-background-image: url("resources/drawbg1.gif");
+    -fx-background-size: 100% 100%;
+}
+
+#parent_login{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#parent_profile{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#parent_menu2{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#getIdScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#InvalidIdScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#signUpScreen{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#leaderboard{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+#parent_local,#parent_record,#parent_menu,#parent_sample,#parent_noRecord,#parent_reply,#onlineGame{
+    -fx-background-image: url("resources/common_bg2.jpg");
+    -fx-background-size: 50% 50%;
+}
+.table-view{
+   -fx-background-color: transparent;
+}
+
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient( #9f2fb1 0%, #802fb1 100%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-font-size: 18;
+    -fx-font-family: "Comic Sans MS";
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+.list-cell:odd {
+  -fx-background-color: #9f2fb1;
+  -fx-text-fill: white;
+  -fx-font-family: "Comic Sans MS";
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+}
+.list-cell:filled:hover {
+  -fx-background-color: #802fb1;
+  -fx-text-fill: white;
+  -fx-font-family: "Comic Sans MS";
+  -fx-font-weight: bold;
+  -fx-font-style: italic;
+}

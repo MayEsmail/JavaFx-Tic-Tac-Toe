@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="May' Integration:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/May__Integration_jar</output-path>
+    <root id="archive" name="May' Integration.jar">
+      <element id="module-output" name="May' Integration" />
+    </root>
+  </artifact>
+</component>
