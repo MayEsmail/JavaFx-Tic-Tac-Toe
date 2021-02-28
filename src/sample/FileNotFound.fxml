@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane id="parent_noRecord" fx:id="fileError" alignment="CENTER" prefHeight="646.0" prefWidth="1047.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.FileNotFoundController">
+    <children>
+        <BorderPane id="RecordPane" prefHeight="400.0" prefWidth="862.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;">
+            <top>
+                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="62.0" prefWidth="852.0" text="Looks Like you Didn't Record any game yet!" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font name="Comic Sans MS Bold Italic" size="35.0" />
+                    </font>
+                    <BorderPane.margin>
+                        <Insets top="80.0" />
+                    </BorderPane.margin>
+                    <effect>
+                        <Glow level="1.0">
+                            <input>
+                                <DropShadow height="30.0" offsetY="7.0" radius="7.75" spread="0.7" width="3.0" />
+                            </input>
+                        </Glow>
+                    </effect>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="#7f1987" offset="0.007662835249042145" />
+                        <Stop color="#ffdb00" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+                </Label>
+            </top>
+            <effect>
+                <DropShadow height="255.0" radius="127.0" spread="0.1" width="255.0">
+                    <input>
+                        <DropShadow height="150.0" radius="74.5" width="150.0" />
+                    </input>
+                </DropShadow>
+            </effect>
+         <center>
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#back" prefHeight="45.0" prefWidth="300.0" style="-fx-background-color: #ffdb00;" text="Back" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                    <font>
+                        <Font name="Bookman Old Style Bold Italic" size="21.0" />
+                    </font>
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                    <effect>
+                        <DropShadow color="#937519" height="45.0" radius="22.0" spread="0.45" width="45.0">
+                     <input>
+                        <InnerShadow />
+                     </input></DropShadow>
+                    </effect>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+                </Button>
+         </center>
+        </BorderPane>
+    </children>
+</FlowPane>

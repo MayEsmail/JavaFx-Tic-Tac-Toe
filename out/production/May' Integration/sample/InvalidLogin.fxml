@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane fx:id="InvalidIdScreen" alignment="CENTER" prefHeight="400.0" prefWidth="977.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.InvalidLogin">
+   <children>
+      <BorderPane prefHeight="325.0" prefWidth="750.0" style="-fx-background-color: #1F2741; -fx-border-color: #e0eb08; -fx-border-width: 5;">
+         <center>
+              <Label fx:id="invalidMessage" alignment="CENTER" prefHeight="77.0" prefWidth="529.0" text="Invalid or not exist user ID" BorderPane.alignment="CENTER">
+                 <font>
+                    <Font name="Comic Sans MS Bold Italic" size="35.0" />
+                 </font>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop color="#c31d9f" />
+                        <Stop color="#e0eb08" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <effect>
+                  <Glow level="1.0">
+                     <input>
+                        <DropShadow height="30.0" offsetY="7.0" radius="7.75" spread="0.7" width="3.0" />
+                     </input>
+                  </Glow>
+               </effect>
+              </Label>
+         </center>
+         <bottom>
+              <Button mnemonicParsing="false" onAction="#invalidIdOk" prefHeight="40.0" prefWidth="300.0" style="-fx-background-color: #9f2fb1;" text="OK" textFill="WHITE" BorderPane.alignment="CENTER">
+                 <font>
+                    <Font name="Bookman Old Style Bold Italic" size="21.0" />
+                 </font>
+               <BorderPane.margin>
+                  <Insets bottom="50.0" />
+               </BorderPane.margin>
+               <effect>
+                  <DropShadow color="#952da8" height="58.0" radius="29.0" spread="0.7" width="60.0" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+              </Button>
+         </bottom>
+         <effect>
+            <DropShadow height="255.0" radius="127.0" spread="0.1" width="255.0">
+               <input>
+                  <DropShadow height="150.0" radius="74.5" width="150.0" />
+               </input>
+            </DropShadow>
+         </effect>
+      </BorderPane>
+    </children>
+</FlowPane>

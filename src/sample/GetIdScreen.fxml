@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane fx:id="getIdScreen" accessibleRole="BUTTON" alignment="CENTER" prefHeight="483.0" prefWidth="873.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.GetIdScreenBase">
+   <children>
+      <BorderPane prefHeight="375.0" prefWidth="750.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;">
+         <top>
+            <Label alignment="CENTER" prefHeight="50.0" prefWidth="735.0" text="Welcome to the coolest XO game" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="35.0" />
+               </font>
+               <effect>
+                  <Glow level="1.0">
+                     <input>
+                        <DropShadow height="30.0" offsetY="7.0" radius="7.75" spread="0.7" width="3.0" />
+                     </input>
+                  </Glow>
+               </effect>
+               <textFill>
+                  <LinearGradient endX="1.0" endY="1.0" startX="0.13333333333333333">
+                     <stops>
+                        <Stop color="#7f1987" />
+                        <Stop color="#ffdb00" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+               <BorderPane.margin>
+                  <Insets top="50.0" />
+               </BorderPane.margin>
+            </Label>
+         </top>
+         <center>
+            <HBox alignment="CENTER" prefHeight="162.0" prefWidth="400.0" style="-fx-max-width: 300;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label alignment="CENTER" prefHeight="46.0" prefWidth="378.0" text="Your ID is :">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="32.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient cycleMethod="REPEAT" endX="0.4095238095238096" endY="0.5238095238095238" startX="0.40476190476190477" startY="0.5714285714285714">
+                           <stops>
+                              <Stop color="#c31d9f" />
+                              <Stop color="#e0eb08" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <effect>
+                        <Glow level="1.0" />
+                     </effect>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+                  <Label fx:id="idField" alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="232.0" text="30" textAlignment="CENTER">
+                     <font>
+                        <Font name="Comic Sans MS Bold Italic" size="32.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <textFill>
+                        <LinearGradient cycleMethod="REPEAT" endX="0.4142857142857142" endY="0.5285714285714285" startX="0.40476190476190477" startY="0.5666666666666667">
+                           <stops>
+                              <Stop color="#c31d9f" />
+                              <Stop color="#e0eb08" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                     <effect>
+                        <Glow level="1.0" />
+                     </effect>
+                  </Label>
+               </children>
+            </HBox>
+         </center>
+         <bottom>
+            <Button maxHeight="41.0" mnemonicParsing="false" onAction="#seeId" prefHeight="40.0" prefWidth="295.0" style="-fx-background-color: #7f1987; -fx-max-height: 40;" text="OK" textFill="WHITE" BorderPane.alignment="CENTER">
+               <font>
+                  <Font name="Bookman Old Style Bold Italic" size="21.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="50.0" />
+               </BorderPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow color="#4d0354" height="44.375" radius="21.84375" spread="0.45" width="45.0">
+                     <input>
+                        <InnerShadow />
+                     </input>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </bottom>
+         <effect>
+            <DropShadow height="255.0" radius="127.0" spread="0.1" width="255.0">
+               <input>
+                  <DropShadow height="150.0" radius="74.5" width="150.0" />
+               </input>
+            </DropShadow>
+         </effect>
+      </BorderPane>
+   </children>
+</FlowPane>
