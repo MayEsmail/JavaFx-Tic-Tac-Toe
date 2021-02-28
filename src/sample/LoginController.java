@@ -50,7 +50,8 @@ public class LoginController{
                 if(!ProfileController.profileCheck)
                 {
                     MenuController.computerPlay=false;
-                    screenLoader.loadScene(event,"onlineGame.fxml");
+                    Controller.playOnline=true;
+                    screenLoader.loadScene(event,"Record.fxml");
                 }
                 else{
                     screenLoader.loadScene(event,"Profile.fxml");
@@ -70,6 +71,7 @@ public class LoginController{
     @FXML
     private void register(ActionEvent event){
         screenLoader.loadScene(event,"SingUpScreen.fxml");
+        
     }
     
 }

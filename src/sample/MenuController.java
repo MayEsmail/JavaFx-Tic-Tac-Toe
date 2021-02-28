@@ -29,6 +29,7 @@ public class MenuController implements Initializable{
     } 
     
     public void PlayOnline(ActionEvent event) throws  Exception{
+        //Controller.playOnline=true;
         if(!is_loggedin)
            screenLoader.loadScene(event,"Login_or_Register.fxml");
         else{

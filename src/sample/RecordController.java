@@ -11,10 +11,19 @@ public class RecordController {
     private FlowPane parent_record;
     public void yesRecord(ActionEvent event) throws  Exception{
         recordme=true;
-        screenloader.loadScene(event,"sample.fxml");
+        if(Controller.playOnline){
+            screenloader.loadScene(event,"onlineGame.fxml");
+        }
+        else
+            screenloader.loadScene(event,"sample.fxml");
     }
     public void noRecord(ActionEvent event) throws  Exception{
             recordme=false;
+        if(Controller.playOnline){
+            screenloader.loadScene(event,"onlineGame.fxml");
+        }
+        else
             screenloader.loadScene(event,"sample.fxml");
+
     }
 }

@@ -24,6 +24,7 @@ public class Controller implements Initializable {
     int counter;
     Random random=new Random();
     int num;
+    static boolean playOnline = false;
     private static String[] positions=new String[9];
     private static String[] texts=new String[9];
     @FXML
@@ -199,7 +200,7 @@ public class Controller implements Initializable {
     }
     private void endAndRecord(){
         gameEnd=true;
-        if(!MenuController.computerPlay)
+        if(!MenuController.computerPlay&&!Controller.playOnline)
             record();
     }
     public void end(){
@@ -243,9 +244,7 @@ public class Controller implements Initializable {
             }
             ///check out of squares
             if(counter>=9){
-                if(!MenuController.computerPlay)
-                    record();
-                gameEnd=true;
+                endAndRecord();
                 turnX=true;
                 counter=0;
                 if(MenuController.computerPlay ||MenuController.local){

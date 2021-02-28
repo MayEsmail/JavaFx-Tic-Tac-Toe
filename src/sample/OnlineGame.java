@@ -5,15 +5,20 @@ import java.net.Socket;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class OnlineGame extends Controller implements Initializable{
@@ -28,8 +33,10 @@ public class OnlineGame extends Controller implements Initializable{
     volatile boolean closeConnection = false;
     static GameDatabase databaseObj;
     static boolean checkDB = false;
-    private ScreenLoader screenloader=new ScreenLoader();
-    
+    boolean isRecording = false;
+    private ScreenLoader screenLoader=new ScreenLoader();
+    FileWriter fw;
+
     @FXML
     private Button btn1;
     @FXML
@@ -61,9 +68,11 @@ public class OnlineGame extends Controller implements Initializable{
 
     public void onPlay(ActionEvent event){
         Button btn = (Button) event.getSource();
+        String pos = mapIdToPosition(btn.getId().charAt(3));
         App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow();
         if(!gameEnd && btn.getText().length() == 0) {
             sendMsg(playerTurn + btn.getId().charAt(3));
+            saveToFile(pos, playerTurn);
             btn.setText(playerTurn);
             if(playerTurn.equals("x"))
                 turnX = false;
@@ -76,19 +85,86 @@ public class OnlineGame extends Controller implements Initializable{
         }
 
     }
-    
+
+    public String mapIdToPosition(char id){
+        switch (id){
+            case '1':
+                return "one";
+            case '2':
+                return "two";
+            case '3':
+                return "three";
+            case '4':
+                return "four";
+            case '5':
+                return "five";
+            case '6':
+                return "six";
+            case '7':
+                return "seven";
+            case '8':
+                return "eight";
+            case '9':
+                return "nine";
+            default:
+                return "";
+        }
+    }
+
+    public void saveToFile(String pos, String symbol){
+        System.out.println(pos);
+        System.out.println(symbol);
+        if(isRecording){
+            try{
+                fw.write(pos+"\r\n");
+                fw.write(symbol+"\r\n");
+            }catch(Exception ex){ex.printStackTrace();}
+
+        }
+    }
+
     public void checkGameState(){
         if(gameEnd) {
             backBtn.setVisible(true);
+            Controller.playOnline=false;
+            try{
+                if(isRecording)
+                    fw.close();
+            }catch(Exception ex){ex.printStackTrace();}
+
             dout.println("close");
-            if(winner == '-')
-                screenLoader.loadScene(App_Stage, "Draw.fxml");
-            else{
-                if((!turnX && playerTurn.equals("x"))||(turnX && playerTurn.equals("o")))
-                    screenLoader.loadScene(App_Stage,"Win.fxml");
-                else
-                    screenLoader.loadScene(App_Stage,"lose.fxml");
+            if(winner == '-'){
+                databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.TIE);
+                change_screen("tie");
+            }else{
+                if(!turnX && playerTurn.equals("x")){
+                    databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.WIN);
+                    change_screen("win");
+                }else if(turnX && playerTurn.equals("o")){
+                    databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.WIN);
+                    change_screen("win");
+                }else{
+                    databaseObj.updatePlayerRecord(OnlineGame.userId, PlayerState.LOSE);
+                    change_screen("lose");
+                }
             }
+
+        }
+    }
+   
+    public void change_screen(String state){
+        switch (state){
+            case "win":
+                screenLoader.loadScene(App_Stage,"Win.fxml");
+                break;
+            case "lose":
+                screenLoader.loadScene(App_Stage,"lose.fxml");
+                break;
+            case "tie":
+                screenLoader.loadScene(App_Stage,"Draw.fxml");
+                break;
+            default:
+                break;
         }
     }
 
@@ -104,9 +180,14 @@ public class OnlineGame extends Controller implements Initializable{
         btn9.setDisable(state);
     }
 
-    public void back(ActionEvent event) { 
+    public void back(ActionEvent event) {
+        try {
+            dout.println("stop");
             closeConnection = true;
-            screenLoader.loadScene(event,"Menu.fxml");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        screenLoader.loadScene(event, "Menu.fxml");
     }
 
     public void playAction(){
@@ -119,8 +200,11 @@ public class OnlineGame extends Controller implements Initializable{
         initializeList();
         setButtonsState(true);
         sendBtn.setDisable(true);
+        isRecording = RecordController.recordme;
 
         try{
+            if(isRecording)
+                fw = new FileWriter("game.txt");
             s = new Socket("localhost", 5555);
             //din = new DataInputStream(s.getInputStream());
             din = new BufferedReader(new InputStreamReader(s.getInputStream()));
@@ -163,6 +247,7 @@ public class OnlineGame extends Controller implements Initializable{
 
         public void run(){
             while(true){
+
                 try{
                     if(closeConnection)
                         break;
@@ -208,6 +293,7 @@ public class OnlineGame extends Controller implements Initializable{
     synchronized public void playMove(String play){
         char position = play.charAt(1);
         String player = "" + play.charAt(0);
+        String pos = mapIdToPosition(position);
         if(player.equals("x"))
             turnX = false;
         if(player.equals("o"))
@@ -248,6 +334,7 @@ public class OnlineGame extends Controller implements Initializable{
                     default:
                         break;
                 }
+                saveToFile(pos, player);
                 end();
                 checkGameState();
                 /*if (gameEnd)

@@ -7,6 +7,7 @@ package sample;
 
 import java.awt.geom.Rectangle2D;
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,6 +34,7 @@ public class ScreenLoader {
     // you could also use your logout window / whatever here instead
         Alert alert = new Alert(Alert.AlertType.NONE, "Do you really want to close the game?", ButtonType.YES, ButtonType.NO);
         if (alert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
+            Platform.exit();
             mainWindow.close();
         }
 }

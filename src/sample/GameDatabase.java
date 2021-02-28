@@ -188,7 +188,7 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString = new String("INSERT INTO " + selectedGame + "(Name,Password,SavedFile) VALUES('" + name + "'," + password + ",null)");
+            String queryString = new String("INSERT INTO " + selectedGame + "(Name,Password,SavedFile,LoginStatus) VALUES('" + name + "'," + password + ",null,true)");
             stmt.executeUpdate(queryString);
             queryString = new String("SELECT Id FROM " + selectedGame + " ORDER BY Id DESC LIMIT 1");
             ResultSet rs = stmt.executeQuery(queryString);
@@ -209,7 +209,7 @@ public class GameDatabase
         try
         {
             Statement stmt = con.createStatement();
-            String queryString = new String("INSERT INTO " + selectedGame + "(Name,Password,SavedFile) VALUES('" + name + "',null,null)");
+            String queryString = new String("INSERT INTO " + selectedGame + "(Name,Password,SavedFile,LoginStatus) VALUES('" + name + "',null,null,true)");
             stmt.executeUpdate(queryString);
             queryString = new String("SELECT Id FROM " + selectedGame + " ORDER BY Id DESC LIMIT 1");
             ResultSet rs = stmt.executeQuery(queryString);
