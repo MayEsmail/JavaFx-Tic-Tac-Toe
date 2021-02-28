@@ -40,29 +40,6 @@ public class ReplayController implements Initializable {
     private FlowPane replay;
     private ScreenLoader screenLoader =new ScreenLoader();
     boolean isFileError = false;
-//    public ReplayController()  I {
-//        try {
-//            System.out.println(replay);
-//            fis=new FileInputStream("game.txt");
-//            in=new Scanner(fis);
-//        }catch (FileNotFoundException ex){
-//            if(ex!=null){
-//                try {
-//                    FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Menu.fxml"));
-//                    replay.getChildren().setAll(fxmlLoader);
-//                } catch(Exception e) {
-//                    e.printStackTrace();
-//                }
-//                isFileError=true;
-//            }
-//            ex.printStackTrace();
-//        }
-//        System.out.println("in replay");
-//
-//    }
-
-
-
     public void updateGui(){
 
         try{
@@ -189,15 +166,9 @@ public class ReplayController implements Initializable {
            in=new Scanner(fis);
         }catch (FileNotFoundException ex){
           if(ex!=null){
-               try {
-                   FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("FileNotFound.fxml"));
-                   replay.getChildren().setAll(fxmlLoader);
-               } catch(Exception e) {
-                   e.printStackTrace();
-               }
                isFileError=true;
+        
            }
-
        } System.out.println("in replay");
     }
 }

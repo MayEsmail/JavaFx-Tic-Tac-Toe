@@ -17,6 +17,11 @@ public class GetIdScreenBase implements  Initializable{
     } 
     public void seeId(ActionEvent event) throws IOException{
         MenuController.is_loggedin = true;
-        new ScreenLoader().loadScene(event,"onlineGame.fxml");
+        if(ProfileController.profileCheck){
+            new ScreenLoader().loadScene(event,"Profile.fxml");
+            ProfileController.profileCheck=false;
+        }
+        else
+            new ScreenLoader().loadScene(event,"onlineGame.fxml");
     }
 }

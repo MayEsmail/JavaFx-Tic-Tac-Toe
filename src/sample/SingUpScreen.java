@@ -35,13 +35,14 @@ public class SingUpScreen implements  Initializable{
             OnlineGame.userId = newPlayerId;
             screenLoader.loadScene(event,"GetIdScreen.fxml");
         }
-
-
     }
     public void canelSingUp(ActionEvent event) throws IOException{
-        screenLoader.loadScene(event,"Login_or_Register.fxml");
-//        FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("Login_or_Register.fxml"));
-//        signUpScreen.getChildren().setAll(fxmlLoader);
+        if(ProfileController.profileCheck){
+            screenLoader.loadScene(event,"Profile.fxml");
+            ProfileController.profileCheck=false;
+        }        
+        else
+            screenLoader.loadScene(event,"Login_or_Register.fxml");
     }
 }
 
