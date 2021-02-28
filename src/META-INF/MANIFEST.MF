@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Main-Class: sample.Main
-Class-Path: lib\ext\mysql-connector-java-8.0.23.jar
+Class-Path: . mysql-connector-java-8.0.23.jar
 
 
