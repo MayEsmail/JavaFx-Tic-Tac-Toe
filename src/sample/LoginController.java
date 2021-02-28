@@ -85,7 +85,7 @@ public class LoginController{
                 if(!ProfileController.profileCheck)
                 {
                     MenuController.computerPlay=false;
-                    Parent game_Parent=FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
+                    Parent game_Parent=FXMLLoader.load(getClass().getResource("Record.fxml"));
                     Scene game_Scene=new Scene(game_Parent);
                     Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
                     App_Stage.setScene(game_Scene);

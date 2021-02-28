@@ -12,8 +12,14 @@ public class RecordController {
     public void yesRecord() throws  Exception{
         try {
             recordme=true;
-            FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
-            parent_record.getChildren().setAll(fxmlLoader);
+            if(Controller.playOnline){
+                FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
+                parent_record.getChildren().setAll(fxmlLoader);
+            }else{
+                FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
+                parent_record.getChildren().setAll(fxmlLoader);
+            }
+
         } catch(Exception e) {
             e.printStackTrace();
         }
@@ -21,8 +27,13 @@ public class RecordController {
     public void noRecord() throws  Exception{
         try {
             recordme=false;
-            FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
-            parent_record.getChildren().setAll(fxmlLoader);
+            if(Controller.playOnline){
+                FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("onlineGame.fxml"));
+                parent_record.getChildren().setAll(fxmlLoader);
+            }else{
+                FlowPane fxmlLoader =  FXMLLoader.load(getClass().getResource("sample.fxml"));
+                parent_record.getChildren().setAll(fxmlLoader);
+            }
         } catch(Exception e) {
             e.printStackTrace();
         }

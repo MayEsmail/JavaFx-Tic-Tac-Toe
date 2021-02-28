@@ -30,6 +30,7 @@ public class Controller implements Initializable {
     int counter;
     Random random=new Random();
     int num;
+    static boolean playOnline = false;
     private static String[] positions=new String[9];
     private static String[] texts=new String[9];
     @FXML
@@ -245,54 +246,54 @@ public class Controller implements Initializable {
             if(text[0].equals(text[1]) && text[0].equals(text[2]) && text[0]!=""){
                 winGround(buttons[0],buttons[1],buttons[2]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             if(text[0].equals(text[3]) && text[0].equals(text[6]) && text[0]!=""){
                 winGround(buttons[0],buttons[3],buttons[6]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             if(text[0].equals(text[4]) && text[0].equals(text[8]) && text[0]!=""){
                 winGround(buttons[0],buttons[4],buttons[8]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             if(text[1].equals(text[4]) && text[1].equals(text[7]) && text[1]!=""){
                 winGround(buttons[1],buttons[4],buttons[7]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             if(text[2].equals(text[5]) && text[2].equals(text[8]) && text[2]!=""){
                 winGround(buttons[2],buttons[5],buttons[8]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             if(text[3].equals(text[4]) && text[3].equals(text[5]) && text[3]!=""){
                 winGround(buttons[3],buttons[4],buttons[5]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             if(text[6].equals(text[7]) && text[6].equals(text[8]) && text[6]!=""){
                 winGround(buttons[6],buttons[7],buttons[8]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             if(text[2].equals(text[4]) && text[2].equals(text[6]) && text[2]!=""){
                 winGround(buttons[2],buttons[4],buttons[6]);
                 gameEnd=true;
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
             }
             ///check out of squares
             if(counter>=9){
-                if(!MenuController.computerPlay)
+                if(!MenuController.computerPlay && !Controller.playOnline)
                     record();
                 gameEnd=true;
                 turnX=true;

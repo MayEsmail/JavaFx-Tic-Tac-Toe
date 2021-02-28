@@ -38,6 +38,7 @@ public class MenuController implements Initializable{
     public void PlayOnline(ActionEvent event) throws  Exception{
         if(!is_loggedin){
            try {
+               Controller.playOnline = true;
 //                Parent Menu2_Parent=FXMLLoader.load(getClass().getResource("Login_or_Register.fxml"));
 //                Scene Menu2_Scene=new Scene(Menu2_Parent);
 //                Stage App_Stage= (Stage)((Node) event.getSource()).getScene().getWindow(); 
