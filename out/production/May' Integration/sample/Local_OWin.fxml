@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<FlowPane id="parent_local" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="1241.0" stylesheets="@Win.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Local_OWinController">
+    <children>
+        <BorderPane prefHeight="444.0" prefWidth="940.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;">
+            <left>
+                <BorderPane prefHeight="201.0" prefWidth="420.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;" BorderPane.alignment="CENTER">
+                    <top>
+                        <Label text="Player X" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets top="60.0" />
+                            </BorderPane.margin>
+                            <font>
+                                <Font name="Comic Sans MS Bold Italic" size="35.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#c31d9f" />
+                                        <Stop color="#c31d9f" offset="0.007662835249042145" />
+                                        <Stop color="#e0eb08" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                            <effect>
+                                <Glow level="1.0">
+                                    <input>
+                                        <DropShadow height="30.0" offsetY="7.0" radius="7.75" spread="0.8" width="3.0" />
+                                    </input>
+                                </Glow>
+                            </effect>
+                        </Label>
+                    </top>
+                    <center>
+                        <Label fx:id="playerx" alignment="CENTER" prefHeight="17.0" prefWidth="389.0" text="HardLuck, you won no coins." textFill="WHITE" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Comic Sans MS Bold Italic" size="25.0" />
+                            </font>
+                            <BorderPane.margin>
+                                <Insets bottom="50.0" />
+                            </BorderPane.margin>
+                            <effect>
+                                <Glow />
+                            </effect>
+                        </Label>
+                    </center>
+                    <BorderPane.margin>
+                        <Insets left="20.0" top="20.0" />
+                    </BorderPane.margin>
+                    <effect>
+                        <DropShadow height="100.0" offsetY="5.0" radius="62.0" spread="0.4" width="150.0" />
+                    </effect>
+                </BorderPane>
+            </left>
+            <right>
+                <BorderPane prefHeight="201.0" prefWidth="420.0" style="-fx-background-color: #1F2741; -fx-border-color: #ffdb00; -fx-border-width: 5;" BorderPane.alignment="CENTER">
+                    <top>
+                        <Label text="Player O" BorderPane.alignment="CENTER">
+                            <BorderPane.margin>
+                                <Insets top="60.0" />
+                            </BorderPane.margin>
+                            <font>
+                                <Font name="Comic Sans MS Bold Italic" size="35.0" />
+                            </font>
+                            <textFill>
+                                <LinearGradient endX="1.0" endY="1.0">
+                                    <stops>
+                                        <Stop color="#c31d9f" />
+                                        <Stop color="#c31d9f" offset="0.007662835249042145" />
+                                        <Stop color="#e0eb08" offset="1.0" />
+                                    </stops>
+                                </LinearGradient>
+                            </textFill>
+                            <effect>
+                                <Glow level="1.0">
+                                    <input>
+                                        <DropShadow height="30.0" offsetY="7.0" radius="7.75" spread="0.8" width="3.0" />
+                                    </input>
+                                </Glow>
+                            </effect>
+                        </Label>
+                    </top>
+                    <center>
+                        <Label fx:id="playero" alignment="CENTER" prefHeight="41.0" prefWidth="389.0" text="Wooow, you won 10 coins." textFill="WHITE" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="Comic Sans MS Bold Italic" size="25.0" />
+                            </font>
+                            <BorderPane.margin>
+                                <Insets bottom="50.0" />
+                            </BorderPane.margin>
+                            <effect>
+                                <Glow />
+                            </effect>
+                        </Label>
+                    </center>
+                    <BorderPane.margin>
+                        <Insets left="50.0" right="20.0" top="20.0" />
+                    </BorderPane.margin>
+                    <effect>
+                        <DropShadow height="100.0" offsetY="5.0" radius="62.0" spread="0.4" width="150.0" />
+                    </effect>
+                </BorderPane>
+            </right>
+            <bottom>
+                <Button mnemonicParsing="false" onAction="#backToMenu" prefHeight="39.0" prefWidth="313.0" style="-fx-background-color: #9f2fb1;" text="Back to Menu" textFill="WHITE" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets bottom="40.0" top="50.0" />
+                    </BorderPane.margin>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <font>
+                        <Font name="Bookman Old Style Bold Italic" size="21.0" />
+                    </font>
+                    <effect>
+                        <DropShadow color="#952da8" height="57.0" radius="27.8375" spread="0.7" width="56.35" />
+                    </effect>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </Button>
+            </bottom>
+        </BorderPane>
+    </children>
+</FlowPane>
